@@ -6,30 +6,13 @@
 
   <div class="navbar-nav">
     <form class="form-inline">
-      <button class="btn btn-success mx-2" type="button" data-target="#signUpModal">Sign Up</button>
-      <button class="btn btn-outline-light mx-2" type="button">Sign In</button>
+      <button class="btn btn-danger mx-2" type="button" data-toggle="modal" data-target="#infectedModal">I've tested positive.</button>
+      <button class="btn btn-success mx-2" type="button" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+      <button class="btn btn-outline-light mx-2" type="button" data-toggle="modal" data-target="#signInModal">Sign In</button>
     </form>
   </div>
 
-  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="signUpModal">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  
 </nav>
 
   <div class="jumbotron jumbotron-fluid">
@@ -53,7 +36,7 @@
           <div class="card-body">
             <h5>Covid-19 Stats</h5>
             <p class="card-text">Sample text leads to d3 page</p>
-            <a href="#" class="btn btn-primary">Click here</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#d3Modal">Click here</a>
           </div>
         </div>
 
@@ -62,8 +45,7 @@
           <div class="card-body">
             <h5>Add info</h5>
             <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
-            <a href="#" class="btn btn-primary">Add a note</a>
-            <a href="#" class="btn btn-primary">Add a Location</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal">Add a note</a>
           </div>
         </div>
 
@@ -72,11 +54,158 @@
           <div class="card-body">
             <h5>My notes and Locations</h5>
             <p class="card-text">See your saved notes and locations.</p>
-            <a href="#" class="btn btn-primary">My Notes</a>
-            <a href="#" class="btn btn-primary">My Locations</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myNotesModal">My Notes</a>
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myLocationsModal">My Locations</a>
           </div>
         </div>
 
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- infected Modal --}}
+<div class="modal fade" id="infectedModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Sign Up Modal --}}
+<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Sign In Modal --}}
+<div class="modal fade" id="signInModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Stats Modal --}}
+<div class="modal fade" id="d3Modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Add a Note Modal --}}
+<div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- My Notes Modal --}}
+<div class="modal fade" id="myNotesModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- My Locations Modal --}}
+<div class="modal fade" id="myLocationsModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
