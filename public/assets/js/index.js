@@ -32,3 +32,4 @@ if (navigator.geolocation) {
     accessToken: 'pk.eyJ1IjoiZ2FycmV0dG1yb2JlcnRzIiwiYSI6ImNrN2Rxcm4zYjAwbmkzZm50NXh5d211MnEifQ.QfPRfpUkyKGIjSdjfAzMkg'
   }).addTo(mymap);
 }
+
