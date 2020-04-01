@@ -3,16 +3,15 @@
     <img src="/assets/images/virus.png" width="30" height="30" class="d-inline-block" alt="Novel-19 logo">
     Novel-19
   </a>
-  
+
   <div class="navbar-nav">
     <form class="form-inline">
-    <button class="btn btn-success mx-2" type="button" data-target="#signUpModal">Sign Up</button>
-    <button class="btn btn-outline-light mx-2" type="button">Sign In</button>
+      <button class="btn btn-success mx-2" type="button" data-target="#signUpModal">Sign Up</button>
+      <button class="btn btn-outline-light mx-2" type="button">Sign In</button>
     </form>
   </div>
 
-  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal"
-    aria-hidden="true">
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -41,6 +40,10 @@
     </div>
   </div>
 
+  <input type="search" id="address-input" class="form-control" placeholder="Where are we going?" />
+
+  <p>Selected: <strong id="address-value">none</strong></p>
+
   <div class="row">
     <div class="col">
       <div class="card-deck">
@@ -53,17 +56,17 @@
             <a href="#" class="btn btn-primary">Click here</a>
           </div>
         </div>
-      
+
         <div class="card border-dark">
           <img src="https://picsum.photos/100" class="card-img-top">
           <div class="card-body">
             <h5>Add info</h5>
-            <p class="card-text">Our collective safety depends on your input!  Contribute here:</p>
+            <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
             <a href="#" class="btn btn-primary">Add a note</a>
             <a href="#" class="btn btn-primary">Add a Location</a>
           </div>
         </div>
-      
+
         <div class="card border-dark">
           <img src="https://picsum.photos/100" class="card-img-top">
           <div class="card-body">
@@ -73,10 +76,10 @@
             <a href="#" class="btn btn-primary">My Locations</a>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
 </div>
 
-{{!-- <link href="/assets/js/index.js"> --}}
+<script src="/assets/js/index.js"></script>
