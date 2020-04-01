@@ -1,19 +1,20 @@
 
-(function() {
-  var placesAutocomplete = places({
-    appId: 'pl9T9H0MC1H7',
-    apiKey: 'ca4802ec76ed8a2eab627fc4eae7ddbb',
-    container: document.querySelector('#address-input')
-  });
+let coords;
 
-  var $address = document.querySelector('#address-value');
-  placesAutocomplete.on('change', function(e) {
-    $address.textContent = e.suggestion.value;
-    console.log($address.textContent);
-  });
+var placesAutocomplete = places({
+  appId: 'pl9T9H0MC1H7',
+  apiKey: 'ca4802ec76ed8a2eab627fc4eae7ddbb',
+  container: document.querySelector('#address-input')
+});
 
-  placesAutocomplete.on('clear', function() {
-    $address.textContent = 'none';
-  });
+var $address = document.querySelector('#address-value');
+placesAutocomplete.on('change', function (e) {
+  $address.textContent = e.suggestion.value;
+  coords = e.suggestion.latlng;
+  console.log(coords);
+});
 
-})();
+placesAutocomplete.on('clear', function () {
+  $address.textContent = 'none';
+});
+
