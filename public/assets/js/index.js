@@ -16,7 +16,8 @@ if (navigator.geolocation) {
       accessToken: 'pk.eyJ1IjoiZ2FycmV0dG1yb2JlcnRzIiwiYSI6ImNrN2Rxcm4zYjAwbmkzZm50NXh5d211MnEifQ.QfPRfpUkyKGIjSdjfAzMkg'
     }).addTo(mymap);
   });
-} else {
+}
+else {
   alert('You need to enable location services for best app experience.');
   // Creates a new map using generic coords
   var userCoords = ['40.115791', '-100.603986'];
