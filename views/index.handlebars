@@ -1,0 +1,82 @@
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">
+    <img src="/assets/images/virus.png" width="30" height="30" class="d-inline-block" alt="Novel-19 logo">
+    Novel-19
+  </a>
+  
+  <div class="navbar-nav">
+    <form class="form-inline">
+    <button class="btn btn-success mx-2" type="button" data-target="#signUpModal">Sign Up</button>
+    <button class="btn btn-outline-light mx-2" type="button">Sign In</button>
+    </form>
+  </div>
+
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="signUpModal">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1>Map goes here</h1>
+      <div id="mapid"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card-deck">
+
+        <div class="card border-dark">
+          <img src="https://picsum.photos/100" class="card-img-top">
+          <div class="card-body">
+            <h5>Covid-19 Stats</h5>
+            <p class="card-text">Sample text leads to d3 page</p>
+            <a href="#" class="btn btn-primary">Click here</a>
+          </div>
+        </div>
+      
+        <div class="card border-dark">
+          <img src="https://picsum.photos/100" class="card-img-top">
+          <div class="card-body">
+            <h5>Add info</h5>
+            <p class="card-text">Our collective safety depends on your input!  Contribute here:</p>
+            <a href="#" class="btn btn-primary">Add a note</a>
+            <a href="#" class="btn btn-primary">Add a Location</a>
+          </div>
+        </div>
+      
+        <div class="card border-dark">
+          <img src="https://picsum.photos/100" class="card-img-top">
+          <div class="card-body">
+            <h5>My notes and Locations</h5>
+            <p class="card-text">See your saved notes and locations.</p>
+            <a href="#" class="btn btn-primary">My Notes</a>
+            <a href="#" class="btn btn-primary">My Locations</a>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- <link href="/assets/js/index.js"> --}}
