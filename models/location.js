@@ -1,6 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
   // Location model
-  const Location = sequelize.model('Location', {
+  const Location = sequelize.define('Location', {
     addressLine: {
       type: DataTypes.STRING,
       allowNull: false

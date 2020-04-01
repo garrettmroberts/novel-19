@@ -36,7 +36,7 @@ module.exports = function(sequelize, DataTypes) {
 
   // A single user may have many notes.
   User.associate = function(models) {
-    User.hasMany(models.Post, {
+    User.hasMany(models.Note, {
       onDelete: 'Cascade'
     });
   };
