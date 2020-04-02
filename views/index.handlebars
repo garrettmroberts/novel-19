@@ -2,7 +2,7 @@
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <img src="/assets/images/virus.png" width="30" height="30" alt="Novel-19 logo">
-      <h1>Novel-19</h1>
+      <h1 class="is-size-4">Novel-19</h1>
     </a>
   </div>
 
@@ -17,57 +17,67 @@
   </div>
 </nav>
 
-  <section class="hero is-light is-fullheight">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">Covid Activity Near You</h1>
-        <div id="mapid" style="z-index:1"></div>
-      </div>
+<section class="hero is-light is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Covid Activity Near You</h1>
+      <div id="mapid" style="z-index:1"></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <div class="container-fluid">
+<section class="columns">
 
-    <input type="search" id="address-input" class="form-control" placeholder="Where are we going?" />
+  {{!-- <input type="search" id="address-input" class="form-control" placeholder="Where are we going?" />
 
-    <p>Selected: <strong id="address-value">none</strong></p>
-
-    <div class="row">
-      <div class="col">
-        <div class="card-deck">
-
-          <div class="card border-dark">
-            <img src="https://picsum.photos/100" class="card-img-top">
-            <div class="card-body">
-              <h5>Covid-19 Stats</h5>
-              <p class="card-text">Sample text leads to d3 page</p>
-              <button class="btn btn-primary" data-toggle="modal" data-target="#d3Modal" id="statsButton">Click here</button>
-            </div>
-          </div>
-
-          <div class="card border-dark">
-            <img src="https://picsum.photos/100" class="card-img-top">
-            <div class="card-body">
-              <h5>Add info</h5>
-              <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal">Add a note</a>
-            </div>
-          </div>
-
-          <div class="card border-dark">
-            <img src="https://picsum.photos/100" class="card-img-top">
-            <div class="card-body">
-              <h5>My notes and Locations</h5>
-              <p class="card-text">See your saved notes and locations.</p>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myNotesModal">My Notes</a>
-              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myLocationsModal">My Locations</a>
-            </div>
-          </div>
-
-        </div>
+  <p>Selected: <strong id="address-value">none</strong></p> --}}
+  <div class="column">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="https://picsum.photos/200">
+        </figure>
+      </div>
+      <div class="card-content">
+        <h5 class="title is-4">Covid-19 Stats</h5>
+        <p class="card-text">Sample text leads to d3 page</p>
+        <button class="button is-primary" id="statsButton">Click here</button>
       </div>
     </div>
   </div>
+
+  <div class="column">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="https://picsum.photos/200">
+        </figure>
+      </div>
+      <div class="card-content">
+        <h5 class="title is-4">Add info</h5>
+        <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
+        <a href="#" class="button is-primary" id="addNoteModalButton">Add a note</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="column">
+    <div class="card">
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="https://picsum.photos/200">
+        </figure>
+      </div>
+      <div class="card-content">
+        <h5 class="title is-4">My notes and Locations</h5>
+        <p class="card-text">See your saved notes and locations.</p>
+        <a href="#" class="button is-primary" id="myNotesModalButton">My Notes</a>
+        <a href="#" class="button is-primary" id="myLocationsModalButton">My Locations</a>
+      </div>
+    </div>
+  </div>
+  
+</section>
 
 
   {{!-- infected Modal --}}
@@ -75,7 +85,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
       <header class="modal-card-head">
-        <p class="modal-card-title">Thanks you.</p>
+        <p class="modal-card-title">Thank you.</p>
         <button class="delete deleteButton" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
@@ -172,85 +182,70 @@
   </div>
 
   {{!-- Stats Modal --}}
-  <div class="modal fade" id="d3Modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Covid Stats</h5>
-          <button type="button" class="close" data-dismiss="modal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" id="statsGraphs">
-          
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
+  <div class="modal" id="d3Modal" style="z-index:2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Covid Stats</p>
+        <button class="delete deleteButton" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>Placeholder</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="button" class="button deleteButton">Close</button>
+      </footer>
     </div>
   </div>
 
   {{!-- Add a Note Modal --}}
-  <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">My Notes</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+  <div class="modal" id="addNoteModal" style="z-index:2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Add a note</p>
+        <button class="delete deleteButton" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>Form Placeholder</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="button" class="button deleteButton">Close</button>
+      </footer>
     </div>
   </div>
 
   {{!-- My Notes Modal --}}
-  <div class="modal fade" id="myNotesModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">My Locations</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+  <div class="modal" id="myNotesModal" style="z-index:2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">My Notes</p>
+        <button class="delete deleteButton" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>Note Placeholder</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="button" class="button deleteButton">Close</button>
+      </footer>
     </div>
   </div>
 
   {{!-- My Locations Modal --}}
-  <div class="modal fade" id="myLocationsModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
+  <div class="modal" id="myLocationsModal" style="z-index:2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">My Locations</p>
+        <button class="delete deleteButton" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <p>Location Placeholder</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="button" class="button deleteButton">Close</button>
+      </footer>
     </div>
   </div>
 

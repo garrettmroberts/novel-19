@@ -38,13 +38,24 @@ $('#infectedModalButton').on('click', function() {
   $('#infectedModal').addClass('is-active');
 });
 
-$('#signUpModalButton').on('click', function () {
+$('#signUpModalButton').on('click', function() {
   $('#signUpModal').addClass('is-active');
 });
 
-$('#signInModalButton').on('click', function () {
+$('#signInModalButton').on('click', function() {
   $('#signInModal').addClass('is-active');
 });
+
+$('#statsButton').on('click', function() {
+  $('#d3Modal').addClass('is-active');
+});
+
+$('#addNoteModalButton').on('click', function() {
+  $('#addNoteModal').addClass('is-active');
+});
+
+$('#myNotesModalButton').on('click', () => $('#myNotesModal').addClass('is-active'));
+$('#myLocationsModalButton').on('click', () => $('#myLocationsModal').addClass('is-active'));
 
 $('.deleteButton').on('click', function() {
   $('.modal').removeClass('is-active');
