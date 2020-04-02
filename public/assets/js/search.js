@@ -1,5 +1,5 @@
 $(document).ready(() => {
-  const addNoteForm = $('#addnote .btn-primary');
+  const addNoteForm = $('#note .is-link');
   const noteInput = $('#note-input');
   let coords;
 
