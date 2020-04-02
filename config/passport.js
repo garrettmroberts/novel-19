@@ -29,14 +29,22 @@ passport.use(new LocalStrategy(
 
 // Each subsequent request will not contain credentials, but rather the unique cookie
 // that identifies the session. In order to support login sessions, Passport will serialize
-// and deserialize 'user' intances to and from the session. When subsequent requests are
-// recieved, this user object is used to find the user, which will be restored to 'req.user'.
+// and deserialize 'user' intances to and from the session. We will only serialize the user
+// ID to the session, keeping the amount of data stored within the session small. When
+// subsequent requests are recieved, this user object is used to find the user, which will
+// be restored to 'req.user'.
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, user.id);
 });
 
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
+passport.deserializeUser((id, done) => {
+  db.User.findOne({
+    where: {
+      id: id
+    }
+  }).then((result) => {
+    done(null, result);
+  });
 });
 
 module.exports = passport;
