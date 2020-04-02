@@ -16,11 +16,13 @@ module.exports = function (app) {
         yearBorn: req.user.yearBorn,
         status: req.user.status
       };
-      res.status(200).render('index', data);
+      console.log('IN IF. DATA: ', data);
+      res.render('index', { user: data });
     }
     else {
       // User not signed in.
-      res.status(206).render('index', req.user);
+      console.log('IN ELSE. REQ.USER: ', req.user);
+      res.status(206).render('index', { user: req.user });
     }
   });
 

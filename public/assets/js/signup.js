@@ -13,7 +13,7 @@ $(document).ready(() => {
       yearBorn: birthYear
     })
       .then(() => {
-        window.location.replace('/');
+        window.location.replace('/home');
         // If there's an error, log the error
       })
       .catch((err) => {
