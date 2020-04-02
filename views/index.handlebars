@@ -9,9 +9,14 @@
   <div class="navbar-end">
     <div class="navbar-item">
       <div class="buttons">
-        <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive.</button>
-        <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
-        <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
+        {{#if user}}
+          <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
+          <button class="button is-primary" type="button" id="logoutButton">Logout</button>
+        {{/if}}
+        {{#unless user}}
+          <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
+          <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
+        {{/unless}}
       </div>
     </div>
   </div>
