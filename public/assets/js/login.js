@@ -1,8 +1,8 @@
 $(document).ready(function () {
   // Getting references to our form and inputs
   const loginform = $('#login');
-  const loginUsernameInput = $('#username');
-  const loginPasswordInput = $('#password');
+  const loginUsernameInput = $('#loginUsername');
+  const loginPasswordInput = $('#loginPassword');
 
   // loginUser does a post to our "api/login" route
   function loginUser(username, password) {
