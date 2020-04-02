@@ -7,9 +7,6 @@ module.exports = function(app) {
   // how the sequelize User model was configured. If the user is created successfully, proceed to
   // log the user in. Otherwise send back an error.
   app.post('/api/signup', (req, res) => {
-    console.log(req.body.username);
-    console.log(req.body.password);
-    console.log(req.body.yearBorn);
     db.User.create({
       username: req.body.username,
       password: req.body.password,
@@ -18,7 +15,7 @@ module.exports = function(app) {
     })
       .then(() => {
         console.log('inside /api/signup then');
-        res.redirect('api/login');
+        res.redirect('/');
       })
       .catch((err) => {
         console.log('inside /api/signup catch');
@@ -27,11 +24,13 @@ module.exports = function(app) {
       });
   });
 
+  const options = {
+    failureRedirect: '/',
+    successRedirect: '/'
+  };
   // Route to login. Uses passport.authenticate middleware that was set up with local strategy.
   // If the user has valid login credentials, sign them in. Otherwise send an error.
-  app.post('/api/login', passport.authenticate('local', { failureFlash: true }), (req, res) => {
-    res.json(req.user);
-  });
+  app.post('/api/login', passport.authenticate('local', options));
 
   // Route to terminate a login session. According to passport docs, invoking req. logout() will 
   // remove the req.user property and clear the login session (if any).

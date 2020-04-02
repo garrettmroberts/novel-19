@@ -42,8 +42,9 @@ module.exports = function(sequelize, DataTypes) {
 
   // Method to check if unhashed password entered by the user can be compared
   // to the hashed password stored in the database.
-  User.prototype.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.password);
+  User.prototype.validPassword = async function(password) {
+    const val = await bcrypt.compareSync(password, this.password);
+    return val;
   };
 
   // Add hook before user is created to automatically hash the password. This will
