@@ -1,25 +1,25 @@
-$(document).ready(function () {
+$(document).ready(() => {
   // Getting references to our form and inputs
   const loginform = $('#login');
   const loginUsernameInput = $('#loginUsername');
   const loginPasswordInput = $('#loginPassword');
 
   // loginUser does a post to our "api/login" route
-  function loginUser(username, password) {
+  loginUser = (username, password) => {
     $.post('/api/login', {
       username: username,
       password: password
     })
-      .then(function() {
+      .then(() => {
         window.location.replace('/');
         // If there's an error, log the error
       })
-      .catch(function(err) {
+      .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
-  loginform.on('submit', function () {
+  loginform.on('submit', () => {
     event.preventDefault();
     const userData = {
       username: loginUsernameInput.val().trim(),
