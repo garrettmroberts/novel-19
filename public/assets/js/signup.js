@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(() => {
   // Getting references to our form and inputs
   const signUpForm = $('#signup');
   const signUpUsernameInput = $('#signupUsername');
@@ -6,22 +6,22 @@ $(document).ready(function () {
   const birthYearInput = $('#birthYear');
 
   // loginUser does a post to our "api/signup" route
-  function signUpUser(username, password, birthYear) {
+  signUpUser = (username, password, birthYear) => {
     $.post('/api/signup', {
       username: username,
       password: password,
       yearBorn: birthYear
     })
-      .then(function() {
+      .then(() => {
         window.location.replace('/');
         // If there's an error, log the error
       })
-      .catch(function(err) {
+      .catch((err) => {
         console.log(err);
       });
-  }
+  };
 
-  signUpForm.on('submit', function () {
+  signUpForm.on('submit', () => {
     event.preventDefault();
     const userData = {
       username: signUpUsernameInput.val().trim(),
