@@ -12,8 +12,7 @@ passport.use(new LocalStrategy(
       where: {
         username: username
       }
-    }, (err, dbUser) => {
-      if (err) { return done(err); }
+    }).then((dbUser) => {
       // There was no user with the given username
       if (!dbUser) {
         return done(null, false, { message: 'Userame does not exist.' });
