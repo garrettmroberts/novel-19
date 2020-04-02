@@ -1,8 +1,8 @@
 $(document).ready(function () {
   // Getting references to our form and inputs
   const loginform = $('#login');
-  const usernameInput = $('#username');
-  const passwordInput = $('#password');
+  const loginUsernameInput = $('#loginUsername');
+  const loginPasswordInput = $('#loginPassword');
 
   // loginUser does a post to our "api/login" route
   function loginUser(username, password) {
@@ -22,8 +22,8 @@ $(document).ready(function () {
   loginform.on('submit', function () {
     event.preventDefault();
     const userData = {
-      username: usernameInput.val().trim(),
-      password: passwordInput.val().trim()
+      username: loginUsernameInput.val().trim(),
+      password: loginPasswordInput.val().trim()
     };
 
     if (!userData.username || !userData.password) {
@@ -31,7 +31,7 @@ $(document).ready(function () {
     }
     // If we have an username and password run the loginUser function and clear the form
     loginUser(userData.username, userData.password);
-    usernameInput.val('');
-    passwordInput.val('');
+    loginUsernameInput.val('');
+    loginPasswordInput.val('');
   });
 });

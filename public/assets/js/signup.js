@@ -1,8 +1,8 @@
 $(document).ready(function () {
   // Getting references to our form and inputs
   const signUpForm = $('#signup');
-  const usernameInput = $('#username');
-  const passwordInput = $('#password');
+  const signUpUsernameInput = $('#signupUsername');
+  const signUpPasswordInput = $('#signupPassword');
   const birthYearInput = $('#birthYear');
 
   // loginUser does a post to our "api/signup" route
@@ -10,7 +10,7 @@ $(document).ready(function () {
     $.post('/api/signup', {
       username: username,
       password: password,
-      birthYear: birthYear
+      yearBorn: birthYear
     })
       .then(function() {
         window.location.replace('/');
@@ -24,8 +24,8 @@ $(document).ready(function () {
   signUpForm.on('submit', function () {
     event.preventDefault();
     const userData = {
-      username: usernameInput.val().trim(),
-      password: passwordInput.val().trim(),
+      username: signUpUsernameInput.val().trim(),
+      password: signUpPasswordInput.val().trim(),
       birthYear: birthYearInput.val().trim()
     };
 
@@ -34,8 +34,8 @@ $(document).ready(function () {
     }
     // If we have an username and password run the loginUser function and clear the form
     signUpUser(userData.username, userData.password, userData.birthYear);
-    usernameInput.val('');
-    passwordInput.val('');
-    birthYear.val('');
+    signUpUsernameInput.val('');
+    signUpPasswordInput.val('');
+    birthYearInput.val('');
   });
 });
