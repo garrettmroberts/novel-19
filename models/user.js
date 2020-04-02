@@ -19,7 +19,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         len: [8, 24],
-        contains: /[0-9A-Z]/
       }
     },
 
