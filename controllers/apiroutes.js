@@ -1,7 +1,7 @@
 const db = require('../models');
 const passport = require('../config/passport');
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   // Route to sign up. The user's password is automatically hashed and stored securely thanks to
   // how the sequelize User model was configured. If the user is created successfully, proceed to
@@ -30,5 +30,34 @@ module.exports = function(app) {
   app.get('/logout', (req, res) => {
     req.logout();
     res.redirect('/');
+  });
+
+  // Route to add location.
+  app.post('/api/addlocation', (req, res) => {
+    db.Location.create({
+      addressLine: req.body.addressLine,
+      country: req.body.country,
+      state: req.body.state,
+      zipcode: req.body.zipcode
+    })
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  // Route to add note.
+  app.post('/api/addnote', (req, res) => {
+    db.Note.create({
+      body: req.body.body
+    })
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 };
