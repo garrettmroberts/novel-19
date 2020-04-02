@@ -14,7 +14,7 @@ module.exports = function(app) {
       status: false
     })
       .then(() => {
-        res.redirect('/api/login');
+        res.redirect(307, '/api/login');
       })
       .catch((err) => {
         res.status(401).json(err);
