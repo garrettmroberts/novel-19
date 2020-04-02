@@ -1,5 +1,5 @@
 // This file fills out the covid-19 stats modal.
-$(document).ready(function() {
+$(document).ready(function () {
 
   function getData(callback) {
     $.ajax({
@@ -16,8 +16,10 @@ $(document).ready(function() {
     obj.locations.sort((a, b) => b.latest.confirmed - a.latest.confirmed);
 
     for (let i = 0; i < 15; i++) {
-      dataset.push({ country: obj.locations[i].country,
-        confirmedCases: obj.locations[i].latest.confirmed});
+      dataset.push({
+        country: obj.locations[i].country,
+        confirmedCases: obj.locations[i].latest.confirmed
+      });
     }
 
     console.log(dataset);
@@ -33,9 +35,9 @@ $(document).ready(function() {
       .enter()
       .append('rect')
       .attr('x', i => i * 30)
-      .attr('y', d => h - 3 * d)
+      .attr('y', d => height - 3 * d[1])
       .attr('width', 25)
-      .attr('height', d => d)
+      .attr('height', d => d[1])
       .attr('fill', 'navy');
   }
 
