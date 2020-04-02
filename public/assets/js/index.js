@@ -34,3 +34,19 @@ else {
   }).addTo(mymap);
 }
 
+$('#infectedModalButton').on('click', function() {
+  $('#infectedModal').addClass('is-active');
+});
+
+$('#signUpModalButton').on('click', function () {
+  $('#signUpModal').addClass('is-active');
+});
+
+$('#signInModalButton').on('click', function () {
+  $('#signInModal').addClass('is-active');
+});
+
+$('.deleteButton').on('click', function() {
+  $('.modal').removeClass('is-active');
+});
+

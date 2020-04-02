@@ -1,82 +1,86 @@
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">
-    <img src="/assets/images/virus.png" width="30" height="30" class="d-inline-block" alt="Novel-19 logo">
-    Novel-19
-  </a>
-
-  <div class="navbar-nav">
-    <form class="form-inline">
-      <button class="btn btn-danger mx-2" type="button" data-toggle="modal" data-target="#infectedModal">I've tested positive.</button>
-      <button class="btn btn-success mx-2" type="button" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
-      <button class="btn btn-outline-light mx-2" type="button" data-toggle="modal" data-target="#signInModal">Sign In</button>
-    </form>
+<nav class="navbar is-black" role="navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="/assets/images/virus.png" width="30" height="30" alt="Novel-19 logo">
+      <h1>Novel-19</h1>
+    </a>
   </div>
 
-  
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive.</button>
+        <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
+        <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
+      </div>
+    </div>
+  </div>
 </nav>
 
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1>Covid Activity Near You</h1>
-      <div id="mapid"></div>
+  <section class="hero is-light is-fullheight">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Covid Activity Near You</h1>
+        <div id="mapid" style="z-index:1"></div>
+      </div>
     </div>
-  </div>
-<div class="container-fluid">
+  </section>
 
-  <input type="search" id="address-input" class="form-control" placeholder="Where are we going?" />
+  <div class="container-fluid">
 
-  <p>Selected: <strong id="address-value">none</strong></p>
+    <input type="search" id="address-input" class="form-control" placeholder="Where are we going?" />
 
-  <div class="row">
-    <div class="col">
-      <div class="card-deck">
+    <p>Selected: <strong id="address-value">none</strong></p>
 
-        <div class="card border-dark">
-          <img src="https://picsum.photos/100" class="card-img-top">
-          <div class="card-body">
-            <h5>Covid-19 Stats</h5>
-            <p class="card-text">Sample text leads to d3 page</p>
-            <button class="btn btn-primary" data-toggle="modal" data-target="#d3Modal" id="statsButton">Click here</button>
+    <div class="row">
+      <div class="col">
+        <div class="card-deck">
+
+          <div class="card border-dark">
+            <img src="https://picsum.photos/100" class="card-img-top">
+            <div class="card-body">
+              <h5>Covid-19 Stats</h5>
+              <p class="card-text">Sample text leads to d3 page</p>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#d3Modal" id="statsButton">Click here</button>
+            </div>
           </div>
-        </div>
 
-        <div class="card border-dark">
-          <img src="https://picsum.photos/100" class="card-img-top">
-          <div class="card-body">
-            <h5>Add info</h5>
-            <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal">Add a note</a>
+          <div class="card border-dark">
+            <img src="https://picsum.photos/100" class="card-img-top">
+            <div class="card-body">
+              <h5>Add info</h5>
+              <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addNoteModal">Add a note</a>
+            </div>
           </div>
-        </div>
 
-        <div class="card border-dark">
-          <img src="https://picsum.photos/100" class="card-img-top">
-          <div class="card-body">
-            <h5>My notes and Locations</h5>
-            <p class="card-text">See your saved notes and locations.</p>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myNotesModal">My Notes</a>
-            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myLocationsModal">My Locations</a>
+          <div class="card border-dark">
+            <img src="https://picsum.photos/100" class="card-img-top">
+            <div class="card-body">
+              <h5>My notes and Locations</h5>
+              <p class="card-text">See your saved notes and locations.</p>
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myNotesModal">My Notes</a>
+              <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myLocationsModal">My Locations</a>
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
-{{!-- infected Modal --}}
-<div class="modal fade" id="infectedModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Thanks for letting us know.  You're making the world a safer place!</h5>
-        <button type="button" class="close" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Your notes and locations will be shared with others you may have crpssed paths with. Stay safe out there! Here are some helpful links during yur quarantine:</p>
+  {{!-- infected Modal --}}
+  <div class="modal" id="infectedModal" style="z-index:2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Thanks you.</p>
+        <button class="delete deleteButton" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <h5>Thanks for letting us know.  You're making the world into a safer place!</h5>
+        <p>Your notes and locations will be shared with others you may have crossed paths with. Stay safe out there! Here are some helpful links during your quarantine:</p>
         <ul>
           <li>
             <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">CDC recommendations</a>
@@ -88,154 +92,168 @@
             <a href="https://www.psychguides.com/guides/mental-health-hotline/">Mental Health Hotlines</a>
           </li>
         </ul>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="button" class="button deleteButton">Close</button>
+      </footer>
     </div>
   </div>
-</div>
 
-{{!-- Sign Up Modal --}}
-<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Sign Up</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  {{!-- Sign Up Modal --}}
+  <div class="modal" id="signUpModal" style="z-index:2">
+    <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Sign Up</p>
+          <button class="delete deleteButton" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <form id="signup">
+            <div class="field">
+              <label for="signupUsername" class="label">Username</label>
+              <div class="control">
+                <input type="text" class="input" id="signupUsername" name="signupUsername">
+              </div>
+            </div>
+            <div class="field">
+              <label for="signupPassword" class="label">Password</label>
+              <div class="control">
+                <input type="password" class="input" id="signupPassword" name="signupPassword">
+              </div>
+            </div>
+            <div class="field">
+              <label for="birthYear" class="label">Year born</label>
+              <div class="control">
+                <input type="number" min="1920" max="2020" class="input" id="birthYear" name="birthYear">
+              </div>
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link">Submit</button>
+            </div>
+          </form>
+        </section>
+        <footer class="modal-card-foot">
+          <button type="button" class="button deleteButton">Close</button>
+        </footer>
       </div>
-      <div class="modal-body">
-        <form id="signup">
-          <div class="form-group">
-            <label for="signupUsername">Username</label>
-            <input type="text" class="form-control" id="signupUsername" name="signupUsername">
+  </div>
+
+  {{!-- Sign In Modal --}}
+  <div class="modal" id="signInModal" style="z-index:2">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Sign In</p>
+        <button class="delete deleteButton" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <form id="login">
+          <div class="field">
+            <label for="loginUsername" class="label">Username</label>
+            <div class="control">
+              <input type="text" class="input" id="loginUsername" name="loginUsername">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="signupPassword">Password</label>
-            <input type="password" class="form-control" id="signupPassword" name="signupPassword">
+          <div class="field">
+            <label for="loginPassword" class="label">Password</label>
+            <div class="control">
+              <input type="password" class="input" id="loginPassword" name="loginPassword">
+            </div>
           </div>
-          <div class="form-group">
-            <label for="birthYear">Year born</label>
-            <input type="number" min="1920" max="2020" class="form-control" id="birthYear">
+          <div class="control">
+            <button type="submit" class="button is-link">Submit</button>
           </div>
-          <button type="submit" class="btn btn-success">Submit</button>
         </form>
-      </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button type="button" class="button deleteButton">Close</button>
+      </footer>
     </div>
   </div>
-</div>
 
-{{!-- Sign In Modal --}}
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Sign In</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      <form id="login">
-        <div class="form-group">
-          <label for="loginUsername">Username</label>
-          <input type="text" class="form-control" id="loginUsername" name="loginUsername">
+  {{!-- Stats Modal --}}
+  <div class="modal fade" id="d3Modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Covid Stats</h5>
+          <button type="button" class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-          <label for="loginPassword">Password</label>
-          <input type="password" class="form-control" id="loginPassword" name="loginPassword">
+        <div class="modal-body" id="statsGraphs">
+          
         </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-{{!-- Stats Modal --}}
-<div class="modal fade" id="d3Modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Covid Stats</h5>
-        <button type="button" class="close" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="statsGraphs">
-        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  {{!-- Add a Note Modal --}}
+  <div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">My Notes</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-{{!-- Add a Note Modal --}}
-<div class="modal fade" id="addNoteModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">My Notes</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  {{!-- My Notes Modal --}}
+  <div class="modal fade" id="myNotesModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">My Locations</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-{{!-- My Notes Modal --}}
-<div class="modal fade" id="myNotesModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">My Locations</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+  {{!-- My Locations Modal --}}
+  <div class="modal fade" id="myLocationsModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-{{!-- My Locations Modal --}}
-<div class="modal fade" id="myLocationsModal" tabindex="-1" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 {{!-- leaflet js --}}
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
@@ -244,7 +262,7 @@
 <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
 
 {{!-- D3 --}}
-<script src="https://d3js.org/d3.v5.min.js"></script>
+<script src="https://d3js.org/d3.v5.min.js" sameSite="none"></script>
 
 <script src="/assets/js/index.js"></script>
 <script src="/assets/js/stats.js"></script>
