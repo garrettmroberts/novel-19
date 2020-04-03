@@ -3,8 +3,9 @@ $(document).ready(() => {
   $('#myProfileButton').on('click', () => {
     $.get('/profile')
       .then((data) => {
+        console.log('DATA: ', data);
         $('#member-name').text(data.username);
-        $('#member-year-born').text(data.age);
+        $('#member-year-born').text(data.yearBorn);
         $('#member-status').text(data.status);
 
         window.location.replace('/profile');

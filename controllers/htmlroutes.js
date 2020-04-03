@@ -23,7 +23,7 @@ module.exports = function (app) {
   app.get('/profile', isAuthenticated, (req, res) => {
     const data = {
       username: req.user.username,
-      yearBorn: req.user.yerBorn,
+      yearBorn: req.user.yearBorn,
       status: req.user.status
     };
     res.render('profile', data);
