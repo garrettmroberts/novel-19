@@ -5,7 +5,7 @@ $(document).ready(() => {
   const signUpPasswordInput = $('#signupPassword');
   const birthYearInput = $('#birthYear');
 
-  // loginUser does a post to our "api/signup" route
+  // signUpUser does a post to our "api/signup" route
   signUpUser = (username, password, birthYear) => {
     $.post('/api/signup', {
       username: username,
@@ -13,7 +13,7 @@ $(document).ready(() => {
       yearBorn: birthYear
     })
       .then(() => {
-        window.location.replace('/');
+        window.location.replace('/home');
         // If there's an error, log the error
       })
       .catch((err) => {

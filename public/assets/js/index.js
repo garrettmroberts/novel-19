@@ -60,4 +60,3 @@ $('#myLocationsModalButton').on('click', () => $('#myLocationsModal').addClass('
 $('.deleteButton').on('click', function() {
   $('.modal').removeClass('is-active');
 });
-

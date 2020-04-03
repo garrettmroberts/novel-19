@@ -1,15 +1,14 @@
 const db = require('../models');
 const passport = require('../config/passport');
+const isAuthenticated = require('../config/middleware/isAuthenticated');
 
-module.exports = function(app) {
+
+module.exports = function (app) {
 
   // Route to sign up. The user's password is automatically hashed and stored securely thanks to
   // how the sequelize User model was configured. If the user is created successfully, proceed to
   // log the user in. Otherwise send back an error.
   app.post('/api/signup', (req, res) => {
-    console.log(req.body.username);
-    console.log(req.body.password);
-    console.log(req.body.yearBorn);
     db.User.create({
       username: req.body.username,
       password: req.body.password,
@@ -17,26 +16,66 @@ module.exports = function(app) {
       status: false
     })
       .then(() => {
-        console.log('inside /api/signup then');
-        res.redirect('api/login');
+        res.redirect(307, '/api/login');
       })
       .catch((err) => {
-        console.log('inside /api/signup catch');
-        console.log(err);
         res.status(401).json(err);
       });
   });
 
   // Route to login. Uses passport.authenticate middleware that was set up with local strategy.
   // If the user has valid login credentials, sign them in. Otherwise send an error.
-  app.post('/api/login', passport.authenticate('local', { failureFlash: true }), (req, res) => {
-    res.json(req.user);
+  app.post('/api/login', passport.authenticate('local', { successRedirect: '/home', failureRedirect: '/home' }));
+
+  // Route to terminate a login session. According to passport docs, invoking req. logout() will
+  // remove the req.user property and clear the login session (if any).
+  app.get('/api/logout', (req, res) => {
+    req.logout();
+    res.redirect('/home');
   });
 
-  // Route to terminate a login session. According to passport docs, invoking req. logout() will 
-  // remove the req.user property and clear the login session (if any).
-  app.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+  // Route to update user status. Ternary operator used to check logged in user's status.
+  app.put('/api/status', isAuthenticated, (req, res) => {
+    const newStatus = (req.user.status === '1') ? false : true;
+    db.User.update({ status: newStatus }, {
+      where: {
+        id: req.user.id
+      }
+    })
+      .then(() => {
+        res.render('profile');
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
+  });
+
+  // Route to add location.
+  app.post('/api/addlocation', (req, res) => {
+    db.Location.create({
+      addressLine: req.body.addressLine,
+      country: req.body.country,
+      state: req.body.state,
+      zipcode: req.body.zipcode
+    })
+      .then(() => {
+        res.redirect('/home');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  // Route to add note.
+  app.post('/api/addnote', (req, res) => {
+    db.Note.create({
+      body: req.body.body
+    })
+      .then(() => {
+        res.redirect('/');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 };

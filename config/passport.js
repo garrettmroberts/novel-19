@@ -12,8 +12,7 @@ passport.use(new LocalStrategy(
       where: {
         username: username
       }
-    }, (err, dbUser) => {
-      if (err) { return done(err); }
+    }).then((dbUser) => {
       // There was no user with the given username
       if (!dbUser) {
         return done(null, false, { message: 'Userame does not exist.' });
@@ -32,15 +31,19 @@ passport.use(new LocalStrategy(
 // that identifies the session. In order to support login sessions, Passport will serialize
 // and deserialize 'user' intances to and from the session. We will only serialize the user
 // ID to the session, keeping the amount of data stored within the session small. When
-// subsequent requests are recieved, this ID is used to find the user, which will be restored
-// to 'req.user'.
+// subsequent requests are recieved, this user object is used to find the user, which will
+// be restored to 'req.user'.
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) => {
-    done(err, user);
+  db.User.findOne({
+    where: {
+      id: id
+    }
+  }).then((result) => {
+    done(null, result);
   });
 });
 

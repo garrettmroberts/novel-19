@@ -9,9 +9,6 @@
 
 <section class="columns">
 
-  {{!-- <input type="search" id="address-input" class="form-control" placeholder="Where are we going?" />
-
-  <p>Selected: <strong id="address-value">none</strong></p> --}}
   <div class="column">
     <div class="card">
       <div class="card-image">
@@ -173,7 +170,23 @@
         <button class="delete deleteButton" aria-label="close"></button>
       </header>
       <section class="modal-card-body">
-        <p>Form Placeholder</p>
+        <form id="note">
+          <div class="field">
+            <label for="location" class="label">Location</label>
+            <div class="control">
+              <input type="search" id="address-input" class="form-control" placeholder="Add a location." />
+            </div>
+          </div>
+          <div class="field">
+            <label for="note" class="label">Note</label>
+            <div class="control">
+              <input type="text" class="input" id="note-input" name="note">
+            </div>
+          </div>
+          <div class="control">
+            <button type="submit" class="button is-link">Submit</button>
+          </div>
+          </form>
       </section>
       <footer class="modal-card-foot">
         <button type="button" class="button deleteButton">Close</button>
@@ -226,3 +239,4 @@
 <script src="/assets/js/search.js"></script>
 <script src="/assets/js/signup.js"></script>
 <script src="/assets/js/login.js"></script>
+<script src="/assets/js/profile.js"></script>
