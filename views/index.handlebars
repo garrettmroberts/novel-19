@@ -12,11 +12,10 @@
           <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
           <button class="button is-primary logoutButton" type="button">Logout</button>
           <button class="button is-primary is-outlined" type="button" id="myProfileButton" data-username="{{username}}">My Profile</button>
-        {{/if}}
-        {{#unless user}}
+        {{else}}
           <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
           <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
-        {{/unless}}
+        {{/if}}
       </div>
     </div>
   </div>
@@ -31,203 +30,51 @@
   </div>
 </section>
 
-<section class="columns">
+<section id="additional-info">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="https://picsum.photos/200">
+            </figure>
+          </div>
+          <div class="card-content">
+            <h5 class="title is-4">Covid-19 Stats</h5>
+            <p class="card-text">Sample text leads to d3 page</p>
+            <a href="/stats">
+            <button class="button is-primary">Click here</button>
+            </a>
+          </div>
+        </div>
+      </div>
 
-  <div class="column">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="https://picsum.photos/200">
-        </figure>
+      {{#if user}}
+      <div class="column">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src="https://picsum.photos/200">
+            </figure>
+          </div>
+          <div class="card-content">
+            <h5 class="title is-4">Add info</h5>
+            <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
+            <a href="#" class="button is-primary" id="addNoteModalButton">Add a note</a>
+          </div>
+        </div>
       </div>
-      <div class="card-content">
-        <h5 class="title is-4">Covid-19 Stats</h5>
-        <p class="card-text">Sample text leads to d3 page</p>
-        <a href="/stats">
-        <button class="button is-primary">Click here</button>
-        </a>
-      </div>
+      {{/if}}
     </div>
   </div>
 
-  <div class="column">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="https://picsum.photos/200">
-        </figure>
-      </div>
-      <div class="card-content">
-        <h5 class="title is-4">Add info</h5>
-        <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
-        <a href="#" class="button is-primary" id="addNoteModalButton">Add a note</a>
-      </div>
-    </div>
-  </div>
-
-  <div class="column">
-    <div class="card">
-      <div class="card-image">
-        <figure class="image is-4by3">
-          <img src="https://picsum.photos/200">
-        </figure>
-      </div>
-      <div class="card-content">
-        <h5 class="title is-4">My notes and Locations</h5>
-        <p class="card-text">See your saved notes and locations.</p>
-        <a href="#" class="button is-primary" id="myNotesModalButton">My Notes</a>
-        <a href="#" class="button is-primary" id="myLocationsModalButton">My Locations</a>
-      </div>
-    </div>
-  </div>
-  
 </section>
 
-
-  {{!-- infected Modal --}}
-  <div class="modal" id="infectedModal" style="z-index:2">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Thank you.</p>
-        <button class="delete deleteButton" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <h5>Thanks for letting us know.  You're making the world into a safer place!</h5>
-        <p>Your notes and locations will be shared with others you may have crossed paths with. Stay safe out there! Here are some helpful links during your quarantine:</p>
-        <ul>
-          <li>
-            <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html">CDC recommendations</a>
-          </li>
-          <li>
-            <a href="https://artsandculture.withgoogle.com/en-us/national-parks-service/">Virtual US National Park Tours</a>
-          </li>
-          <li>
-            <a href="https://www.psychguides.com/guides/mental-health-hotline/">Mental Health Hotlines</a>
-          </li>
-        </ul>
-      </section>
-      <footer class="modal-card-foot">
-        <button type="button" class="button deleteButton">Close</button>
-      </footer>
-    </div>
-  </div>
-
-  {{!-- Sign Up Modal --}}
-  <div class="modal" id="signUpModal" style="z-index:2">
-    <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Sign Up</p>
-          <button class="delete deleteButton" aria-label="close"></button>
-        </header>
-        <section class="modal-card-body">
-          <form id="signup">
-            <div class="field">
-              <div class="signupControl" id="signupUsernameForm">
-                <label for="signupUsername" class="label">Username</label>
-                <div class="control">
-                  <input type="text" class="input" id="signupUsername" name="signupUsername">
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <div class="signupControl" id="signupPasswordForm">
-                <label for="signupPassword" class="label">Password</label>
-                <div class="control">
-                  <input type="password" class="input" id="signupPassword" name="signupPassword">
-                </div>
-              </div>
-            </div>
-            <div class="field">
-              <div class="signupControl" id="signupYearForm">
-                <label for="birthYear" class="label">Year born</label>
-                <div class="control">
-                  <input type="number" min="1920" max="2020" class="input" id="birthYear" name="birthYear">
-                </div>
-              </div>
-            </div>
-            <div class="control">
-              <button type="submit" class="button is-link">Submit</button>
-            </div>
-          </form>
-        </section>
-      </div>
-  </div>
-
-  {{!-- Sign In Modal --}}
-  <div class="modal" id="signInModal" style="z-index:2">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Sign In</p>
-        <button class="delete deleteButton" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <form id="login">
-          <div class="field">
-            <label for="loginUsername" class="label">Username</label>
-            <div class="control">
-              <input type="text" class="input" id="loginUsername" name="loginUsername">
-            </div>
-          </div>
-          <div class="field">
-            <label for="loginPassword" class="label">Password</label>
-            <div class="control">
-              <input type="password" class="input" id="loginPassword" name="loginPassword">
-            </div>
-          </div>
-          <div class="control">
-            <button type="submit" class="button is-link">Submit</button>
-          </div>
-        </form>
-      </section>
-      <footer class="modal-card-foot">
-        <button type="button" class="button deleteButton">Close</button>
-      </footer>
-    </div>
-  </div>
-
-  {{!-- Add a Note Modal --}}
+  {{!-- Modals --}}
   {{> modals/notes}}
-
-  {{!-- My Notes Modal --}}
-  <div class="modal" id="myNotesModal" style="z-index:2">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">My Notes</p>
-        <button class="delete deleteButton" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <p>Note Placeholder</p>
-      </section>
-      <footer class="modal-card-foot">
-        <button type="button" class="button deleteButton">Close</button>
-      </footer>
-    </div>
-  </div>
-
-  {{!-- My Locations Modal --}}
-  <div class="modal" id="myLocationsModal" style="z-index:2">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">My Locations</p>
-        <button class="delete deleteButton" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <p>Location Placeholder</p>
-      </section>
-      <footer class="modal-card-foot">
-        <button type="button" class="button deleteButton">Close</button>
-      </footer>
-    </div>
-  </div>
-
-
-{{!-- leaflet js --}}
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+  {{> modals/login}}
+  {{> modals/signup}}
 
 {{!-- algolia places --}}
 <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
@@ -237,3 +84,5 @@
 <script src="/assets/js/signup.js"></script>
 <script src="/assets/js/login.js"></script>
 <script src="/assets/js/profile.js"></script>
+<script src="/assets/js/map.js"></script>
+
