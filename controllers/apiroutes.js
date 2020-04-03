@@ -89,15 +89,10 @@ module.exports = function (app) {
   });
 
   app.get('/api/notes/all', function(req, res) {
-    db.User.findAll({
+    db.Note.findAll({
       include: [
         {
-          model: db.Note,
-          include: [
-            {
-              model: db.Location
-            }
-          ]
+          model: db.Location,
         }
       ]
     }).then(results => {
