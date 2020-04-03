@@ -1,28 +1,3 @@
-<nav class="navbar is-black" role="navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="/">
-      <img src="/assets/images/virus.png" width="30" height="30" alt="Novel-19 logo">
-      <h1 class="is-size-4">Novel-19</h1>
-    </a>
-  </div>
-
-  <div class="navbar-end">
-    <div class="navbar-item">
-      <div class="buttons">
-        {{#if user}}
-          <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
-          <button class="button is-primary logoutButton" type="button">Logout</button>
-          <button class="button is-primary is-outlined" type="button" id="myProfileButton" data-username="{{username}}">My Profile</button>
-        {{/if}}
-        {{#unless user}}
-          <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
-          <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
-        {{/unless}}
-      </div>
-    </div>
-  </div>
-</nav>
-
 <section class="hero is-light is-fullheight">
   <div class="hero-body">
     <div class="container">
@@ -44,7 +19,9 @@
       <div class="card-content">
         <h5 class="title is-4">Covid-19 Stats</h5>
         <p class="card-text">Sample text leads to d3 page</p>
-        <button class="button is-primary" id="statsButton">Click here</button>
+        <a href="/stats">
+        <button class="button is-primary">Click here</button>
+        </a>
       </div>
     </div>
   </div>
@@ -184,23 +161,6 @@
     </div>
   </div>
 
-  {{!-- Stats Modal --}}
-  <div class="modal" id="d3Modal" style="z-index:2">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Covid Stats</p>
-        <button class="delete deleteButton" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <p>Placeholder</p>
-      </section>
-      <footer class="modal-card-foot">
-        <button type="button" class="button deleteButton">Close</button>
-      </footer>
-    </div>
-  </div>
-
   {{!-- Add a Note Modal --}}
   <div class="modal" id="addNoteModal" style="z-index:2">
     <div class="modal-background"></div>
@@ -275,11 +235,7 @@
 {{!-- algolia places --}}
 <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
 
-{{!-- D3 --}}
-<script src="https://d3js.org/d3.v5.min.js" sameSite="none"></script>
-
 <script src="/assets/js/index.js"></script>
-<script src="/assets/js/stats.js"></script>
 <script src="/assets/js/search.js"></script>
 <script src="/assets/js/signup.js"></script>
 <script src="/assets/js/login.js"></script>

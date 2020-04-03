@@ -1,7 +1,6 @@
 const isAuthenticated = require('../config/middleware/isAuthenticated');
 
 module.exports = function (app) {
-
   // Home page
   app.get('/home', (req, res) => {
     // User is signed in.
@@ -38,4 +37,5 @@ module.exports = function (app) {
   app.get('/', (req, res) => {
     res.redirect('/home');
   });
+
 };
