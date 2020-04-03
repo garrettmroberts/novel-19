@@ -23,6 +23,22 @@ module.exports = function(sequelize, DataTypes) {
         isNumeric: true
       }
     },
+
+    latitude: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isNumeric: true
+      }
+    },
+
+    longitude: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isNumeric: true
+      }
+    }
   });
 
   // A single location may have many notes.
