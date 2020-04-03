@@ -108,4 +108,13 @@ $(document).ready(() => {
   // Whenever user presses a key in the note's textarea, validate input length.
   noteInput.on('keyup', validateInput);
   // =================================================================
+
+  $('#myNotesModalButton').on('click', function(event) {
+    $.ajax({
+      url: '/api/notes/user',
+      type: 'GET'
+    }).then((results) => {
+      console.log(results.Notes);
+    });
+  });
 });
