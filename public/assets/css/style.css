@@ -21,3 +21,9 @@
 .bar:hover {
   fill: navy
 }
+
+.modal-card-head {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom: 1px solid #00d1b2;
+}

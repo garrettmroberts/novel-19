@@ -189,37 +189,7 @@
   </div>
 
   {{!-- Add a Note Modal --}}
-  <div class="modal" id="addNoteModal" style="z-index:2">
-    <div class="modal-background"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Add a note</p>
-        <button class="delete deleteButton" aria-label="close"></button>
-      </header>
-      <section class="modal-card-body">
-        <form id="note">
-          <div class="field">
-            <label for="location" class="label">Location</label>
-            <div class="control">
-              <input type="search" id="address-input" class="form-control" placeholder="Add a location." />
-            </div>
-          </div>
-          <div class="field">
-            <label for="note" class="label">Note</label>
-            <div class="control">
-              <input type="text" class="input" id="note-input" name="note">
-            </div>
-          </div>
-          <div class="control">
-            <button type="submit" class="button is-link">Submit</button>
-          </div>
-          </form>
-      </section>
-      <footer class="modal-card-foot">
-        <button type="button" class="button deleteButton">Close</button>
-      </footer>
-    </div>
-  </div>
+  {{> modals/notes}}
 
   {{!-- My Notes Modal --}}
   <div class="modal" id="myNotesModal" style="z-index:2">
@@ -263,7 +233,7 @@
 <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
 
 <script src="/assets/js/index.js"></script>
-<script src="/assets/js/search.js"></script>
+<script src="/assets/js/notes.js"></script>
 <script src="/assets/js/signup.js"></script>
 <script src="/assets/js/login.js"></script>
 <script src="/assets/js/profile.js"></script>

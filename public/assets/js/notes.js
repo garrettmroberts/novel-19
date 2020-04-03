@@ -1,6 +1,10 @@
 $(document).ready(() => {
-  const addNoteForm = $('#note .is-link');
+  const addNoteButton = $('#add-note-button');
   const noteInput = $('#note-input');
+  const noteHelpText = $('#note-help-text');
+  let isValid = false;
+  let coords;
+
 
   // Initialize the places library.
   const placesAutocomplete = places({
@@ -37,6 +41,7 @@ $(document).ready(() => {
       zipcode: data.zipcode,
       latitude: data.latitude,
       longitude: data.longitude
+
     })
       .then(() => {
         window.location.replace('/');
@@ -62,21 +67,45 @@ $(document).ready(() => {
   };
 
   // When save is clicked hit api routes with data.
-  addNoteForm.on('click', () => {
+  addNoteButton.on('click', () => {
     event.preventDefault();
-    const data = {
-      addressLine: addressLine,
-      country: country,
-      state: state,
-      zipcode: zipcode,
-      latitude: latitude,
-      longitude: longitude,
-      note: noteInput.val().trim()
-    };
-    addLocation(data);
-    if (!data.note) {
-      return;
+
+    if (isValid) {
+      const data = {
+        addressLine: addressLine,
+        country: country,
+        state: state,
+        zipcode: zipcode,
+        latitude: latitude,
+        longitude: longitude,
+        note: noteInput.val().trim()
+      };
+      addLocation(data);
+      if (!data.note) {
+        return;
+      }
+      addNote(data);
     }
-    addNote(data);
   });
+
+  // Tyler's code ====================================================
+  // Function: validates user input
+  const validateInput = function() {
+    let length = noteInput.val().trim().length;
+    // Should be 1-120 characters.
+    if (length > 0 && length < 121) {
+      noteInput.removeClass('is-danger');
+      noteHelpText.addClass('is-invisible');
+      isValid = true;
+    }
+    else {
+      noteInput.addClass('is-danger');
+      noteHelpText.removeClass('is-invisible');
+      isValid = false;
+    }
+  };
+
+  // Whenever user presses a key in the note's textarea, validate input length.
+  noteInput.on('keyup', validateInput);
+  // =================================================================
 });
