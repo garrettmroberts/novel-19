@@ -124,21 +124,27 @@
         <section class="modal-card-body">
           <form id="signup">
             <div class="field">
-              <label for="signupUsername" class="label">Username</label>
-              <div class="control">
-                <input type="text" class="input" id="signupUsername" name="signupUsername">
+              <div class="signupControl" id="signupUsernameForm">
+                <label for="signupUsername" class="label">Username</label>
+                <div class="control">
+                  <input type="text" class="input" id="signupUsername" name="signupUsername">
+                </div>
               </div>
             </div>
             <div class="field">
-              <label for="signupPassword" class="label">Password</label>
-              <div class="control">
-                <input type="password" class="input" id="signupPassword" name="signupPassword">
+              <div class="signupControl" id="signupPasswordForm">
+                <label for="signupPassword" class="label">Password</label>
+                <div class="control">
+                  <input type="password" class="input" id="signupPassword" name="signupPassword">
+                </div>
               </div>
             </div>
             <div class="field">
-              <label for="birthYear" class="label">Year born</label>
-              <div class="control">
-                <input type="number" min="1920" max="2020" class="input" id="birthYear" name="birthYear">
+              <div class="signupControl" id="signupYearForm">
+                <label for="birthYear" class="label">Year born</label>
+                <div class="control">
+                  <input type="number" min="1920" max="2020" class="input" id="birthYear" name="birthYear">
+                </div>
               </div>
             </div>
             <div class="control">
@@ -146,9 +152,6 @@
             </div>
           </form>
         </section>
-        <footer class="modal-card-foot">
-          <button type="button" class="button deleteButton">Close</button>
-        </footer>
       </div>
   </div>
 

@@ -33,6 +33,47 @@ else {
     accessToken: 'pk.eyJ1IjoiZ2FycmV0dG1yb2JlcnRzIiwiYSI6ImNrN2Rxcm4zYjAwbmkzZm50NXh5d211MnEifQ.QfPRfpUkyKGIjSdjfAzMkg'
   }).addTo(mymap);
 }
+$('#signupUsernameForm').keyup(() => {
+  $('#signupUsername').removeClass('is-danger');
+  $('#signupUsername').removeClass('is-success');
+  $('#signupUsernameForm').children().remove('p');
+
+  if ($('#signupUsername').val().length < 8) {
+    $('#signupUsername').addClass('is-danger');
+    $('#signupUsernameForm').append('<p class="help is-danger">Username must be 8 characters or more.</p>');
+  }
+  else {
+    $('#signupUsername').addClass('is-success');
+  }
+});
+
+$('#signupPasswordForm').keyup(() => {
+  $('#signupPassword').removeClass('is-danger');
+  $('#signupPassword').removeClass('is-success');
+  $('#signupPasswordForm').children().remove('p');
+
+  if ($('#signupPassword').val().length < 8) {
+    $('#signupPassword').addClass('is-danger');
+    $('#signupPasswordForm').append('<p class="help is-danger">Username must be 8 characters or more.</p>');
+  }
+  else {
+    $('#signupPassword').addClass('is-success');
+  }
+});
+
+$('#signupYearForm').keyup(() => {
+  $('#birthYear').removeClass('is-danger');
+  $('#birthYear').removeClass('is-success');
+  $('#signupYearForm').children().remove('p');
+
+  if ($('#birthYear').val() < 1920 || $('#birthYear').val() > 2020) {
+    $('#birthYear').addClass('is-danger');
+    $('#signupYearForm').append('<p class="help is-danger">Enter a valid year.</p>');
+  }
+  else {
+    $('#birthYear').addClass('is-success');
+  }
+});
 
 $('#infectedModalButton').on('click', function() {
   $('#infectedModal').addClass('is-active');
