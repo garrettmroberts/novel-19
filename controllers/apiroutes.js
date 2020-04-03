@@ -27,9 +27,9 @@ module.exports = function (app) {
 
   // Route to terminate a login session. According to passport docs, invoking req. logout() will
   // remove the req.user property and clear the login session (if any).
-  app.get('/logout', (req, res) => {
+  app.get('/api/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect('/home');
   });
 
   // Route to add location.
@@ -41,7 +41,7 @@ module.exports = function (app) {
       zipcode: req.body.zipcode
     })
       .then(() => {
-        res.redirect('/');
+        res.redirect('/home');
       })
       .catch((err) => {
         console.log(err);

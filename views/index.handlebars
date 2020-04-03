@@ -11,7 +11,8 @@
       <div class="buttons">
         {{#if user}}
           <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
-          <button class="button is-primary" type="button" id="logoutButton">Logout</button>
+          <button class="button is-primary logoutButton" type="button">Logout</button>
+          <button class="button is-primary is-outlined" type="button" id="myProfileButton" data-username="{{username}}">My Profile</button>
         {{/if}}
         {{#unless user}}
           <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
@@ -282,3 +283,4 @@
 <script src="/assets/js/search.js"></script>
 <script src="/assets/js/signup.js"></script>
 <script src="/assets/js/login.js"></script>
+<script src="/assets/js/profile.js"></script>

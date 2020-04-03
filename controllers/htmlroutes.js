@@ -2,11 +2,6 @@ const isAuthenticated = require('../config/middleware/isAuthenticated');
 
 module.exports = function (app) {
 
-  // Home page redirect
-  app.get('/', (req, res) => {
-    res.redirect('/home');
-  });
-
   // Home page
   app.get('/home', (req, res) => {
     // User is signed in.
@@ -26,17 +21,21 @@ module.exports = function (app) {
 
   // Member page
   app.get('/profile', isAuthenticated, (req, res) => {
-    const userObj = {
+    const data = {
       username: req.user.username,
-      age: req.user.age,
+      yearBorn: req.user.yerBorn,
       status: req.user.status
     };
-    console.log(userObj);
-    res.render('profile', userObj);
+    res.render('profile', data);
   });
 
   // Stats page
   app.get('/stats', (req, res) => {
     res.render('stats');
+  });
+
+  // Home page redirect
+  app.get('/', (req, res) => {
+    res.redirect('/home');
   });
 };
