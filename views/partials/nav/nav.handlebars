@@ -1,0 +1,46 @@
+<nav class="navbar is-black" role="navigation">
+  <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+          <img src="/assets/images/virus.png" width="30" height="30" alt="Novel-19 logo">
+          <h1 class="is-size-4">Novel-19</h1>
+      </a>
+  </div>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        {{!-- User is signed in. --}}
+        {{#if user}}
+          {{!-- On home page. --}}
+          {{#if user.home}}
+            <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
+            <button class="button is-primary logoutButton" type="button">Logout</button>
+            <button class="button is-primary is-outlined" type="button" id="myProfileButton" data-username="{{username}}">My Profile</button>
+          {{/if}}
+          {{!-- On profile page. --}}
+          {{#if user.profile}}
+            <button class="button is-primary homeButton" type="button">Home</button>
+            <button class="button is-primary is-outlined logoutButton" type="button">Logout</button>
+          {{/if}}
+          {{!-- On stats page. --}}
+          {{#if stats}}
+            <button class="button is-primary homeButton" type="button">Home</button>
+            <button class="button is-primary is-outlined logoutButton" type="button">Logout</button>
+          {{/if}}
+        {{!-- User is NOT signed in. --}}
+        {{else}}
+          {{!-- On home page. --}}
+          {{#if home}}
+            <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
+            <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
+          {{/if}}
+          {{!-- On stats page. --}}
+          {{#if stats}}
+            <button class="button is-primary homeButton" type="button">Home</button>
+            <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
+            <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</nav>
