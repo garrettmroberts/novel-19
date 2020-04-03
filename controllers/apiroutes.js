@@ -56,7 +56,9 @@ module.exports = function (app) {
       addressLine: req.body.addressLine,
       country: req.body.country,
       state: req.body.state,
-      zipcode: req.body.zipcode
+      zipcode: req.body.zipcode,
+      latitude: req.body.latitude,
+      longitude: req.body.longitude
     })
       .then(() => {
         res.redirect('/home');
@@ -66,16 +68,18 @@ module.exports = function (app) {
       });
   });
 
-  // Route to add note.
-  app.post('/api/addnote', (req, res) => {
+  // Route to add note. Checks if user is authenticated first.
+  app.post('/api/addnote', isAuthenticated, (req, res) => {
     db.Note.create({
-      body: req.body.body
+      body: req.body.body,
+      UserId: req.user.id
     })
       .then(() => {
-        res.redirect('/');
+        res.redirect('/home');
       })
       .catch((err) => {
         console.log(err);
       });
   });
 };
+

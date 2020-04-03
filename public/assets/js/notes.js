@@ -1,7 +1,6 @@
 $(document).ready(() => {
   const addNoteForm = $('#note .is-link');
   const noteInput = $('#note-input');
-  let coords;
 
   // Initialize the places library.
   const placesAutocomplete = places({
@@ -20,6 +19,8 @@ $(document).ready(() => {
     country = e.suggestion.country;
     state = e.suggestion.administrative;
     zipcode = e.suggestion.postcode;
+    latitude = e.suggestion.latlng.lat;
+    longitude = e.suggestion.latlng.lng;
   });
 
   // Clears autocomplete.
@@ -33,7 +34,9 @@ $(document).ready(() => {
       addressLine: data.addressLine,
       country: data.country,
       state: data.state,
-      zipcode: data.zipcode
+      zipcode: data.zipcode,
+      latitude: data.latitude,
+      longitude: data.longitude
     })
       .then(() => {
         window.location.replace('/');
@@ -66,6 +69,8 @@ $(document).ready(() => {
       country: country,
       state: state,
       zipcode: zipcode,
+      latitude: latitude,
+      longitude: longitude,
       note: noteInput.val().trim()
     };
     addLocation(data);
