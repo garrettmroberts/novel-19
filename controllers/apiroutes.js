@@ -1,5 +1,7 @@
 const db = require('../models');
 const passport = require('../config/passport');
+const isAuthenticated = require('../config/middleware/isAuthenticated');
+
 
 module.exports = function (app) {
 
@@ -27,9 +29,25 @@ module.exports = function (app) {
 
   // Route to terminate a login session. According to passport docs, invoking req. logout() will
   // remove the req.user property and clear the login session (if any).
-  app.get('/logout', (req, res) => {
+  app.get('/api/logout', (req, res) => {
     req.logout();
-    res.redirect('/');
+    res.redirect('/home');
+  });
+
+  // Route to update user status. Ternary operator used to check logged in user's status.
+  app.put('/api/status', isAuthenticated, (req, res) => {
+    const newStatus = (req.user.status === '1') ? false : true;
+    db.User.update({ status: newStatus }, {
+      where: {
+        id: req.user.id
+      }
+    })
+      .then(() => {
+        res.render('profile');
+      })
+      .catch((err) => {
+        res.status(400).json(err);
+      });
   });
 
   // Route to add location.
@@ -41,7 +59,7 @@ module.exports = function (app) {
       zipcode: req.body.zipcode
     })
       .then(() => {
-        res.redirect('/');
+        res.redirect('/home');
       })
       .catch((err) => {
         console.log(err);

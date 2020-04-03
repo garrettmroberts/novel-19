@@ -1,0 +1,46 @@
+$(document).ready(() => {
+  // My Profile button is clicked on index page. Get request to get profile page.
+  $('#myProfileButton').on('click', () => {
+    $.get('/profile')
+      .then((data) => {
+        console.log('DATA: ', data);
+        $('#member-name').text(data.username);
+        $('#member-year-born').text(data.yearBorn);
+        $('#member-status').text(data.status);
+
+        window.location.replace('/profile');
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.replace('/home');
+      });
+  });
+
+  // Logout button is clicked. Get request to api route POST /api/logout.
+  $('.logoutButton').on('click', () => {
+    $.get('/api/logout')
+      .then(() => {
+        window.location.replace('/home');
+      })
+      .catch((err) => {
+        console.log(err);
+        window.location.replace('/home');
+      });
+  });
+
+  // Home button is clicked. Get request to html route GET /home.
+  $('.homeButton').on('click', ()=> {
+    $.get('/home')
+      .then(() => {
+        window.location.replace('/home');
+      });
+  });
+
+  // Update status button is clicked. PUT request to api route PUT /api/status.
+  $('.statusButton').on('click', () => {
+    $.ajax({ url: '/api/status', method: 'PUT' })
+      .then(() => {
+        window.location.replace('/profile');
+      });
+  });
+});
