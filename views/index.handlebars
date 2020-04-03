@@ -1,3 +1,27 @@
+<nav class="navbar is-black" role="navigation">
+  <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+          <img src="/assets/images/virus.png" width="30" height="30" alt="Novel-19 logo">
+          <h1 class="is-size-4">Novel-19</h1>
+      </a>
+  </div>
+  <div class="navbar-end">
+    <div class="navbar-item">
+      <div class="buttons">
+        {{#if user}}
+          <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
+          <button class="button is-primary logoutButton" type="button">Logout</button>
+          <button class="button is-primary is-outlined" type="button" id="myProfileButton" data-username="{{username}}">My Profile</button>
+        {{/if}}
+        {{#unless user}}
+          <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
+          <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
+        {{/unless}}
+      </div>
+    </div>
+  </div>
+</nav>
+
 <section class="hero is-light is-fullheight">
   <div class="hero-body">
     <div class="container">
