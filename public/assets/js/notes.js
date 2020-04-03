@@ -45,7 +45,8 @@ $(document).ready(() => {
 
     })
       .then(() => {
-        window.location.replace('/');
+        addNote(data);
+        // window.location.replace('/');
         // If there's an error, log the error
       })
       .catch((err) => {
@@ -84,11 +85,11 @@ $(document).ready(() => {
         longitude: longitude,
         note: noteInput.val().trim()
       };
+      // if (!data) {
+      //   return;
+      // }
       addLocation(data);
-      if (!data.note) {
-        return;
-      }
-      addNote(data);
+      // addNote(data);
     }
   });
 
