@@ -9,7 +9,7 @@ module.exports = function (app) {
       const data = {
         username: req.user.username,
         yearBorn: req.user.yearBorn,
-        status: req.user.status
+        status: (req.user.status === '1')
       };
       res.render('index', { user: data });
     }
@@ -24,8 +24,9 @@ module.exports = function (app) {
     const data = {
       username: req.user.username,
       yearBorn: req.user.yearBorn,
-      status: req.user.status
+      status: (req.user.status === '1')
     };
+    console.log('DATA: ', data);
     res.render('profile', data);
   });
 
