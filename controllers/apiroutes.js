@@ -81,5 +81,37 @@ module.exports = function (app) {
         console.log(err);
       });
   });
-};
 
+  app.get('/api/notes', function(req, res) {
+    db.User.findAll({
+      include: [
+        {
+          model: db.Note,
+          include: [
+            {
+              model: db.Location
+            }
+          ]
+        }
+      ]
+    }).then(results => {
+      res.json(results);
+    });
+  });
+
+  app.get('/api/notes/:id', function (req, res) {
+    db.User.findOne({
+      include: [
+        {
+          model: db.Note,
+          include: [
+            {
+              model: db.Location
+            }
+          ]
+        }
+      ],
+      where: { id: req.params.id }
+    }).then(result => res.json(result));
+  });
+};
