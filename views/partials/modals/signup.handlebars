@@ -1,0 +1,41 @@
+{{!-- Modal to signup. --}}
+  <div class="modal" id="signUpModal" style="z-index:2">
+    <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Sign Up</p>
+          <button class="delete deleteButton" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <form id="signup">
+            <div class="field">
+              <div class="signupControl" id="signupUsernameForm">
+                <label for="signupUsername" class="label">Username</label>
+                <div class="control">
+                  <input type="text" class="input" id="signupUsername" name="signupUsername">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="signupControl" id="signupPasswordForm">
+                <label for="signupPassword" class="label">Password</label>
+                <div class="control">
+                  <input type="password" class="input" id="signupPassword" name="signupPassword">
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="signupControl" id="signupYearForm">
+                <label for="birthYear" class="label">Year born</label>
+                <div class="control">
+                  <input type="number" min="1920" max="2020" class="input" id="birthYear" name="birthYear">
+                </div>
+              </div>
+            </div>
+            <div class="control">
+              <button type="submit" class="button is-link">Submit</button>
+            </div>
+          </form>
+        </section>
+      </div>
+  </div>
