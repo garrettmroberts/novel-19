@@ -92,7 +92,10 @@ module.exports = function (app) {
     db.Note.findAll({
       include: [
         {
-          model: db.Location,
+          model: db.Location
+        },
+        {
+          model: db.User
         }
       ]
     }).then(results => {
