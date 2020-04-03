@@ -26,7 +26,6 @@ module.exports = function (app) {
       yearBorn: req.user.yearBorn,
       status: (req.user.status === '1')
     };
-    console.log('DATA: ', data);
     res.render('profile', data);
   });
 
