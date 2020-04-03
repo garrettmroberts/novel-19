@@ -1,3 +1,19 @@
 #mapid {
   height: 60vh;
 }
+
+#profile-info-panel {
+  margin-top: 20px;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  border: 1px solid #00d1b2;
+}
+
+#indicator {
+  font-size: .5em;
+  color: #f14668;
+  position: relative;
+  bottom: 1.1em;
+  left: .5em;
+}

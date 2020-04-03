@@ -21,6 +21,7 @@ module.exports = function (app) {
 
   // Member page
   app.get('/profile', isAuthenticated, (req, res) => {
+    console.log('STATUS: ', req.user.status);
     const data = {
       username: req.user.username,
       yearBorn: req.user.yearBorn,
