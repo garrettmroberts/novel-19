@@ -11,7 +11,22 @@ $(document).ready(function () {
   }
 
   function buildTodaysCasesTable(obj) {
-    var dataset = obj.locations[0].timelines.confirmed.timeline;
+    var data = obj.locations[0].timelines.confirmed.timeline;
+
+    let dataset = [];
+    var dates = Object.keys(data);
+    var cases = Object.values(data);
+
+    for (var i = dates.length - 1; i > dates.length - 16; i--) {
+      var newObj = {
+        date: dates[i].split('').splice(0, 10).join(''),
+        case: cases[i]
+      };
+
+      dataset.push(newObj);
+    }
+
+    dataset.reverse();
 
     var svg = d3.select('#nearMe'),
       margin = 200,
@@ -24,8 +39,8 @@ $(document).ready(function () {
     var g = svg.append('g')
       .attr('transform', 'translate(' + 100 + ',' + 100 + ')');
 
-    xScale.domain(dataset.map(function (d) { return d.country; }));
-    yScale.domain([0, d3.max(dataset, function (d) { return d.confirmedCases; })]);
+    xScale.domain(dataset.map(function (d) { return d.date; }));
+    yScale.domain([0, d3.max(dataset, function (d) { return d.case; })]);
 
     g.append('g')
       .attr('transform', `translate(0, ${height})`)
@@ -34,7 +49,7 @@ $(document).ready(function () {
       .style('text-anchor', 'end')
       .attr('dx', '-.8em')
       .attr('dy', '.15em')
-      .attr('transform', 'rotate(-65)')
+      .attr('transform', 'rotate(-50)')
       .attr('font-size', '1.4em');
 
     g.append('g')
@@ -45,18 +60,18 @@ $(document).ready(function () {
       .enter()
       .append('rect')
       .attr('class', 'bar')
-      .attr('x', d => xScale(d.country))
-      .attr('y', d => yScale(d.confirmedCases))
+      .attr('x', d => xScale(d.date))
+      .attr('y', d => yScale(d.case))
       .attr('width', xScale.bandwidth())
-      .attr('height', d => height - yScale(d.confirmedCases))
+      .attr('height', d => height - yScale(d.case))
       .attr('fill', 'red')
       .append('title')
-      .text(d => d.confirmedCases);
+      .text(d => d.case);
 
     svg.append('text')
       .attr('x', 200)
       .attr('y', 80)
-      .text('Most Confirmed Cases by Country')
+      .text(`Confirmed Cases by Day in ${obj.locations[0].country}`)
       .attr('font-weight', 'bold');
   }
 
@@ -70,7 +85,6 @@ $(document).ready(function () {
         type: 'GET'
       }).then(res => {
         var countryCode = res.countryCode;
-
         getData(`https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=${countryCode}&timelines=1`, buildTodaysCasesTable);
       });
     });
@@ -80,6 +94,7 @@ $(document).ready(function () {
     var dataset = [];
     obj.locations.sort((a, b) => b.latest.confirmed - a.latest.confirmed);
 
+    // Select 15 most affected countries
     for (let i = 0; i < 15; i++) {
       dataset.push({
         id: i + 1,
@@ -109,7 +124,7 @@ $(document).ready(function () {
       .style('text-anchor', 'end')
       .attr('dx', '-.8em')
       .attr('dy', '.15em')
-      .attr('transform', 'rotate(-65)')
+      .attr('transform', 'rotate(-50)')
       .attr('font-size', '1.4em');
 
     g.append('g')

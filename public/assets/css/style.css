@@ -17,3 +17,7 @@
   bottom: 1.1em;
   left: .2em;
 }
+
+.bar:hover {
+  fill: navy
+}
