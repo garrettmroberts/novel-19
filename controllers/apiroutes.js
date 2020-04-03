@@ -70,16 +70,22 @@ module.exports = function (app) {
 
   // Route to add note. Checks if user is authenticated first.
   app.post('/api/addnote', isAuthenticated, (req, res) => {
-    db.Note.create({
-      body: req.body.body,
-      UserId: req.user.id
-    })
-      .then(() => {
+    var address = req.body.addressLine;
+    db.Location.findOne({
+      where: {
+        addressLine: address
+      }
+    }).then((location) => {
+      db.Note.create({
+        body: req.body.body,
+        UserId: req.user.id,
+        LocationId: location.id
+      }).then(() => {
         res.redirect('/home');
-      })
-      .catch((err) => {
+      }).catch((err) => {
         console.log(err);
       });
+    });
   });
 
   app.get('/api/notes/all', function(req, res) {

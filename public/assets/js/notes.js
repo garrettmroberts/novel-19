@@ -34,6 +34,7 @@ $(document).ready(() => {
 
   // addLocation does a post to our "api/addlocation" route
   addLocation = (data) => {
+    console.log('location');
     $.post('/api/addlocation', {
       addressLine: data.addressLine,
       country: data.country,
@@ -54,8 +55,11 @@ $(document).ready(() => {
 
   // addNote does a post to our "api/addnote" route
   addNote = (data) => {
+    console.log('note');
     $.post('/api/addnote', {
-      body: data.note
+      body: data.note,
+      addressLine: data.addressLine
+
     })
       .then(() => {
         window.location.replace('/');
