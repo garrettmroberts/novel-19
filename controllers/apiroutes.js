@@ -82,7 +82,7 @@ module.exports = function (app) {
       });
   });
 
-  app.get('/api/notes', function(req, res) {
+  app.get('/api/notes/all', function(req, res) {
     db.User.findAll({
       include: [
         {
@@ -99,7 +99,11 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/api/notes/:id', function (req, res) {
+  app.get('/api/user', isAuthenticated, (req, res) => {
+    res.json(req.user.id);
+  });
+
+  app.get('/api/notes/user', isAuthenticated, function(req, res) {
     db.User.findOne({
       include: [
         {
@@ -111,7 +115,7 @@ module.exports = function (app) {
           ]
         }
       ],
-      where: { id: req.params.id }
+      where: { id: req.user.id }
     }).then(result => res.json(result));
   });
 };
