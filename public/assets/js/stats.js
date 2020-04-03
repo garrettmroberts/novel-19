@@ -1,47 +1,144 @@
 // This file fills out the covid-19 stats modal.
 $(document).ready(function () {
 
-  function getData(callback) {
+  function getData(url, callback) {
     $.ajax({
-      url: 'https://coronavirus-tracker-api.herokuapp.com/v2/locations',
+      url: url,
       type: 'GET'
     }).then(res => {
       callback(res);
     });
   }
 
+  function buildTodaysCasesTable(obj) {
+    var dataset = obj.locations[0].timelines.confirmed.timeline;
+
+    var svg = d3.select('#nearMe'),
+      margin = 200,
+      width = svg.attr('width') - margin,
+      height = svg.attr('height') - margin;
+
+    var xScale = d3.scaleBand().range([0, width]).padding(0.2),
+      yScale = d3.scaleLinear().range([height, 0]);
+
+    var g = svg.append('g')
+      .attr('transform', 'translate(' + 100 + ',' + 100 + ')');
+
+    xScale.domain(dataset.map(function (d) { return d.country; }));
+    yScale.domain([0, d3.max(dataset, function (d) { return d.confirmedCases; })]);
+
+    g.append('g')
+      .attr('transform', `translate(0, ${height})`)
+      .call(d3.axisBottom(xScale))
+      .selectAll('text')
+      .style('text-anchor', 'end')
+      .attr('dx', '-.8em')
+      .attr('dy', '.15em')
+      .attr('transform', 'rotate(-65)')
+      .attr('font-size', '1.4em');
+
+    g.append('g')
+      .call(d3.axisLeft(yScale));
+
+    g.selectAll('bar')
+      .data(dataset)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', d => xScale(d.country))
+      .attr('y', d => yScale(d.confirmedCases))
+      .attr('width', xScale.bandwidth())
+      .attr('height', d => height - yScale(d.confirmedCases))
+      .attr('fill', 'red')
+      .append('title')
+      .text(d => d.confirmedCases);
+
+    svg.append('text')
+      .attr('x', 200)
+      .attr('y', 80)
+      .text('Most Confirmed Cases by Country')
+      .attr('font-weight', 'bold');
+  }
+
+  function getUserCountryCode() {
+    navigator.geolocation.getCurrentPosition(res => {
+      var lat = res.coords.latitude.toFixed(2);
+      var long = res.coords.longitude.toFixed(2);
+
+      $.ajax({
+        url: `http://api.geonames.org/countryCodeJSON?formatted=true&lat=${lat}&lng=${long}&username=garrettmroberts&style=full`,
+        type: 'GET'
+      }).then(res => {
+        var countryCode = res.countryCode;
+
+        getData(`https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=${countryCode}&timelines=1`, buildTodaysCasesTable);
+      });
+    });
+  }
+
   function buildConfirmedCasesTable(obj) {
     var dataset = [];
-    console.log(obj.locations);
     obj.locations.sort((a, b) => b.latest.confirmed - a.latest.confirmed);
 
     for (let i = 0; i < 15; i++) {
       dataset.push({
+        id: i + 1,
         country: obj.locations[i].country,
         confirmedCases: obj.locations[i].latest.confirmed
       });
     }
 
-    console.log(dataset);
-    const height = 400;
-    const width = 500;
-    const svg = d3.select('#statsGraph')
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height);
+    var svg = d3.select('#mostCases'),
+      margin = 200,
+      width = svg.attr('width') - margin,
+      height = svg.attr('height') - margin;
 
-    svg.selectAll('rect')
+    var xScale = d3.scaleBand().range([0, width]).padding(0.2),
+      yScale = d3.scaleLinear().range([height, 0]);
+
+    var g = svg.append('g')
+      .attr('transform', 'translate(' + 100 + ',' + 100 + ')');
+
+    xScale.domain(dataset.map(function (d) { return d.country; }));
+    yScale.domain([0, d3.max(dataset, function (d) { return d.confirmedCases; })]);
+
+    g.append('g')
+      .attr('transform', `translate(0, ${height})`)
+      .call(d3.axisBottom(xScale))
+      .selectAll('text')
+      .style('text-anchor', 'end')
+      .attr('dx', '-.8em')
+      .attr('dy', '.15em')
+      .attr('transform', 'rotate(-65)')
+      .attr('font-size', '1.4em');
+
+    g.append('g')
+      .call(d3.axisLeft(yScale));
+
+    g.selectAll('bar')
       .data(dataset)
       .enter()
       .append('rect')
-      .attr('x', i => i * 30)
-      .attr('y', d => height - 3 * d[1])
-      .attr('width', 25)
-      .attr('height', d => d[1])
-      .attr('fill', 'navy');
+      .attr('class', 'bar')
+      .attr('x', d => xScale(d.country))
+      .attr('y', d => yScale(d.confirmedCases))
+      .attr('width', xScale.bandwidth())
+      .attr('height', d => height - yScale(d.confirmedCases))
+      .attr('fill', 'red')
+      .append('title')
+      .text(d => d.confirmedCases);
+
+    svg.append('text')
+      .attr('x', 200)
+      .attr('y', 80)
+      .text('Most Confirmed Cases by Country')
+      .attr('font-weight', 'bold');
   }
 
-  $('#statsButton').on('click', () => {
-    getData(buildConfirmedCasesTable);
-  });
+  // Builds table showing most cases by country
+  getData('https://coronavirus-tracker-api.herokuapp.com/v2/locations', buildConfirmedCasesTable);
+
+  // Builds Table about user's location
+  getUserCountryCode();
+
 });
