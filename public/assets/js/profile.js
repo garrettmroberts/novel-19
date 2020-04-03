@@ -35,4 +35,12 @@ $(document).ready(() => {
         window.location.replace('/home');
       });
   });
+
+  // Update status button is clicked. PUT request to api route PUT /api/status.
+  $('.statusButton').on('click', () => {
+    $.ajax({ url: '/api/status', method: 'PUT' })
+      .then(() => {
+        window.location.replace('/profile');
+      });
+  });
 });
