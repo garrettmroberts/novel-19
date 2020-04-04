@@ -1,53 +1,38 @@
-<nav class="navbar is-black" role="navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="/">
-      <img src="/assets/images/virus.png" width="30" height="30" alt="Novel-19 logo">
-      <h1 class="is-size-4">Novel-19</h1>
-    </a>
-  </div>
-  <div class="navbar-end">
-    <div class="navbar-item">
-      <div class="buttons">
-        <button class="button is-primary homeButton" type="button">Home</button>
-        <button class="button is-primary is-outlined logoutButton" type="button">Logout</button>
-      </div>
-    </div>
-  </div>
-</nav>
+{{> nav/nav}}
 
 <section class="has-margin-top-20">
   <div class="container">
-        <div class="panel" id="profile-info-panel">
-          <h2 class="panel-heading has-text-centered is-size-3">
-            {{username}}
-            {{#unless status}}
-              <span><i class="fas fa-plus" id="indicator"></i></span>
-            {{/unless}}
-          </h2>
-          <div class="panel-block is-block">
-            <p class="has-text-centered is-size-4">Born in {{yearBorn}}</p>
+    <div class="panel" id="profile-info-panel">
+      <h2 class="panel-heading has-text-centered is-size-3">
+        {{user.username}}
+        {{#if user.status}}
+          <span><i class="fas fa-plus" id="indicator"></i></span>
+        {{/if}}
+      </h2>
+      <div class="panel-block is-block">
+        <div class="columns is-centered is-mobile">
+          <div class="column is-one-fifth">
+            <p class="is-size-6 has-text-left">Born in:</p>
           </div>
-          <div class="panel-block is-block">
-            <p class="has-text-centered is-size-4">Notes</p>
+          <div class="column is-one-fifth">
+            <p class="is-size-6 has-text-right">{{user.yearBorn}}</p>
           </div>
-          <div class="panel-block is-block">
-            <div class="list is-hoverable">
-              <p class="has-text-centered">List content goes here.</p>
-            </div>
-          </div>
-          <div class="panel-block">
-            {{#unless status}}
-            <button class="button is-success is-outlined is-fullwidth statusButton">
-              I'm All Clear
-            </button>
-            {{else}}
-            <button class="button is-danger is-outlined is-fullwidth statusButton">
-              I've Tested Positive
-            </button>
-            {{/unless}}
-          </div>
+        </div>
+      </div>
+      <div class="panel-block is-block" id="user-notes-list">
+        <p class="is-size-4 is-uppercase has-text-centered">Notes</p>
+      </div>
+      <div class="panel-block">
+        {{#if user.status}}
+        <button class="button is-success is-outlined is-fullwidth statusButton">
+          I'm All Clear
+        </button>
+        {{else}}
+        <button class="button is-danger is-outlined is-fullwidth statusButton">
+          I've Tested Positive
+        </button>
+        {{/if}}
       </div>
     </div>
+  </div>
 </section>
-
-<script type="text/javascript" src="/assets/js/profile.js"></script>

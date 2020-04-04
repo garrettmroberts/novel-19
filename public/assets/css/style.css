@@ -18,6 +18,13 @@
   left: .2em;
 }
 
+#user-notes-list {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #c0c0c0;
+  border-bottom: 1px solid #c0c0c0;
+}
+
 .bar:hover {
   fill: navy
 }
@@ -26,4 +33,8 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-bottom: 1px solid #00d1b2;
+}
+
+.home-card-p {
+  height: 50px;
 }

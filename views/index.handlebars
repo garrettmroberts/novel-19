@@ -1,88 +1,57 @@
-<nav class="navbar is-black" role="navigation">
-  <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-          <img src="/assets/images/virus.png" width="30" height="30" alt="Novel-19 logo">
-          <h1 class="is-size-4">Novel-19</h1>
-      </a>
-  </div>
-  <div class="navbar-end">
-    <div class="navbar-item">
-      <div class="buttons">
-        {{#if user}}
-          <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
-          <button class="button is-primary logoutButton" type="button">Logout</button>
-          <button class="button is-primary is-outlined" type="button" id="myProfileButton" data-username="{{username}}">My Profile</button>
-        {{else}}
-          <button class="button is-primary" type="button"id="signUpModalButton">Sign Up</button>
-          <button class="button is-primary is-outlined" type="button" id="signInModalButton">Sign In</button>
-        {{/if}}
-      </div>
-    </div>
-  </div>
-</nav>
+{{> nav/nav}}
 
 <section class="hero is-light is-fullheight">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">Covid Activity Near You</h1>
       <div id="mapid" style="z-index:1"></div>
-    </div>
-  </div>
-</section>
 
-<section id="additional-info">
-  <div class="container">
-    <div class="columns">
-      <div class="column">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="https://picsum.photos/200">
-            </figure>
-          </div>
-          <div class="card-content">
-            <h5 class="title is-4">Covid-19 Stats</h5>
-            <p class="card-text">Sample text leads to d3 page</p>
-            <a href="/stats">
-            <button class="button is-primary">Click here</button>
-            </a>
+      <br>
+
+      <section id="additional-info">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image">
+                    <img src="/assets/images/card1.jpg" alt="Covid-19 Image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <p class="card-text has-text-centered home-card-p">We have pulled statistics for you here!</p>
+                  <a href="/stats">
+                    <button type="button" class="button is-success is-outlined is-medium is-fullwidth">See stats</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {{!-- User is logged in --}}
+            {{#if user}}
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image">
+                    <img src="/assets/images/card2.jpeg" alt="Covid-19 Image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <p class="card-text has-text-centered home-card-p">Our collective safety depends on your input. Contribute here!</p>
+                  <button type="button" class="button is-success is-outlined is-medium is-fullwidth" id="addNoteModalButton">Add note</button>
+                </div>
+              </div>
+            </div>
+            {{/if}}
           </div>
         </div>
-      </div>
+      </section>
 
-      {{#if user}}
-      <div class="column">
-        <div class="card">
-          <div class="card-content">
-            <h5 class="title is-4">Add info</h5>
-            <p class="card-text">Our collective safety depends on your input! Contribute here:</p>
-          </div>
-          <footer class="card-footer">
-            <a type="button" class="card-footer-item is-success is-full-width" id="addNoteModalButton">Add note</a>
-          </footer>
-        </div>
-      </div>
-      {{/if}}
     </div>
   </div>
-
 </section>
 
 {{!-- Modals --}}
 {{> modals/notes}}
 {{> modals/login}}
 {{> modals/signup}}
-
-{{!-- leaflet js --}}
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
-{{!-- algolia places --}}
-<script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
-
-<script src="/assets/js/index.js"></script>
-<script src="/assets/js/notes.js"></script>
-<script src="/assets/js/signup.js"></script>
-<script src="/assets/js/login.js"></script>
-<script src="/assets/js/profile.js"></script>
-<script src="/assets/js/map.js"></script>
-
