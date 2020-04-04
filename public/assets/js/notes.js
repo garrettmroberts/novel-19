@@ -3,8 +3,6 @@ $(document).ready(() => {
   const noteInput = $('#note-input');
   const noteHelpText = $('#note-help-text');
   let isValid = false;
-  let coords;
-
 
   // Initialize the places library.
   const placesAutocomplete = places({
