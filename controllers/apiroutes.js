@@ -52,25 +52,37 @@ module.exports = function (app) {
 
   // Route to add location.
   app.post('/api/addlocation', (req, res) => {
-    db.Location.create({
-      addressLine: req.body.addressLine,
-      country: req.body.country,
-      state: req.body.state,
-      zipcode: req.body.zipcode,
-      latitude: req.body.latitude,
-      longitude: req.body.longitude
-    })
-      .then(() => {
+    const address = req.body.addressLine;
+    db.Location.findOne({
+      where: {
+        addressLine: address
+      }
+    }).then((address) => {
+      console.log(address);
+      if (null === address) {
+        db.Location.create({
+          addressLine: req.body.addressLine,
+          country: req.body.country,
+          state: req.body.state,
+          zipcode: req.body.zipcode,
+          latitude: req.body.latitude,
+          longitude: req.body.longitude
+        })
+          .then(() => {
+            res.redirect('/home');
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
         res.redirect('/home');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      }
+    });
   });
 
   // Route to add note. Checks if user is authenticated first.
   app.post('/api/addnote', isAuthenticated, (req, res) => {
-    var address = req.body.addressLine;
+    const address = req.body.addressLine;
     db.Location.findOne({
       where: {
         addressLine: address
@@ -88,7 +100,7 @@ module.exports = function (app) {
     });
   });
 
-  app.get('/api/notes/all', function(req, res) {
+  app.get('/api/notes/all', function (req, res) {
     db.User.findAll({
       include: [
         {
@@ -109,7 +121,7 @@ module.exports = function (app) {
     res.json(req.user.id);
   });
 
-  app.get('/api/notes/user', isAuthenticated, function(req, res) {
+  app.get('/api/notes/user', isAuthenticated, function (req, res) {
     db.User.findOne({
       include: [
         {
