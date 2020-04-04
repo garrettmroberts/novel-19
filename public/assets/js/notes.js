@@ -93,7 +93,6 @@ $(document).ready(() => {
     }
   });
 
-  // Tyler's code ====================================================
   // Function: validates user input
   const validateInput = function() {
     let length = noteInput.val().trim().length;
@@ -109,10 +108,8 @@ $(document).ready(() => {
       isValid = false;
     }
   };
-
   // Whenever user presses a key in the note's textarea, validate input length.
   noteInput.on('keyup', validateInput);
-  // =================================================================
 
   $('#myNotesModalButton').on('click', function(event) {
     $.ajax({
