@@ -2,7 +2,7 @@
 
 <section class="has-margin-top-20">
   <div class="container">
-    <nav class="panel" id="profile-info-panel">
+    <div class="panel" id="profile-info-panel">
       <h2 class="panel-heading has-text-centered is-size-3">
         {{user.username}}
         {{#if user.status}}
@@ -10,10 +10,17 @@
         {{/if}}
       </h2>
       <div class="panel-block is-block">
-        <p class="has-text-centered is-size-4">Born in {{user.yearBorn}}</p>
+        <div class="columns is-centered is-mobile">
+          <div class="column is-one-fifth">
+            <p class="is-size-6 has-text-left">Born in:</p>
+          </div>
+          <div class="column is-one-fifth">
+            <p class="is-size-6 has-text-right">{{user.yearBorn}}</p>
+          </div>
+        </div>
       </div>
       <div class="panel-block is-block" id="user-notes-list">
-        <p class="has-text-centered is-size-4">Notes</p>
+        <p class="is-size-4 is-uppercase has-text-centered">Notes</p>
       </div>
       <div class="panel-block">
         {{#if user.status}}
@@ -26,6 +33,6 @@
         </button>
         {{/if}}
       </div>
-    </nav>
+    </div>
   </div>
 </section>
