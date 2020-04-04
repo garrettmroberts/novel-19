@@ -48,7 +48,7 @@ $(document).ready(() => {
       type: 'GET'
     }).then(res => {
       // Returns notes left by users with a status of '1'
-      res.filter(data => data.User.status === '1');
+      res = res.filter(data => data.User.status === '1');
       res.forEach(data => {
         let note = data.body;
         let latLong = [parseFloat(data.Location.latitude), parseFloat(data.Location.longitude)];
