@@ -33,7 +33,15 @@ module.exports = function (app) {
 
   // Stats page
   app.get('/stats', (req, res) => {
-    res.render('stats', { stats: true });
+    let data;
+    // If user is logged in, user is true. Otherwise false
+    if (req.user) {
+      data = { user: true, stats: true };
+    }
+    else {
+      data = { user: false, stats: true };
+    }
+    res.render('stats', data);
   });
 
   // Home page redirect
