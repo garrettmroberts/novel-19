@@ -4,13 +4,13 @@
   <div class="container">
         <div class="panel" id="profile-info-panel">
           <h2 class="panel-heading has-text-centered is-size-3">
-            {{username}}
-            {{#unless status}}
+            {{user.username}}
+            {{#if user.status}}
               <span><i class="fas fa-plus" id="indicator"></i></span>
-            {{/unless}}
+            {{/if}}
           </h2>
           <div class="panel-block is-block">
-            <p class="has-text-centered is-size-4">Born in {{yearBorn}}</p>
+            <p class="has-text-centered is-size-4">Born in {{user.yearBorn}}</p>
           </div>
           <div class="panel-block is-block">
             <p class="has-text-centered is-size-4">Notes</p>
@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="panel-block">
-            {{#unless status}}
+            {{#if user.status}}
             <button class="button is-success is-outlined is-fullwidth statusButton">
               I'm All Clear
             </button>
@@ -29,7 +29,7 @@
             <button class="button is-danger is-outlined is-fullwidth statusButton">
               I've Tested Positive
             </button>
-            {{/unless}}
+            {{/if}}
           </div>
       </div>
     </div>
