@@ -3,7 +3,6 @@ $(document).ready(() => {
   // On page load. GET request to retrieve user notes.
   $.get('/api/notes/user')
     .then((data) => {
-      console.log('DATA: ', data);
       let userNotesListDiv = $('#user-notes-list');
       // Display each note.
       data.Notes.forEach(note => {
