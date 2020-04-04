@@ -119,7 +119,12 @@ module.exports = function (app) {
     res.json(req.user.id);
   });
 
-  app.get('/api/notes/user', isAuthenticated, function (req, res) {
+
+  app.get('/api/users/all', (req, res) => {
+    db.User.findAll().then(result => res.json(result));
+  });
+
+  app.get('/api/notes/user', isAuthenticated, function(req, res) {
     db.User.findOne({
       include: [
         {
