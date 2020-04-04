@@ -63,7 +63,8 @@ $(document).ready(() => {
 
     })
       .then(() => {
-        window.location.replace('/');
+        // window.location.replace('/');
+        location.reload();
         // If there's an error, log the error
       })
       .catch((err) => {
