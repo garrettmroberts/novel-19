@@ -1,7 +1,11 @@
 $(document).ready(() => {
   const addNoteButton = $('#add-note-button');
-  const noteInput = $('#note-input');
+  const updateNoteButton = $('#update-note-button');
   const noteHelpText = $('#note-help-text');
+  const noteInput = $('#note-input');
+  const noteInputUpdate = $('#note-input-update');
+  const noteUpdateHelpText = $('#note-update-help-text');
+  const deleteNoteButton = $('#delete-note-button');
   let isValid = false;
 
   // Initialize the places library.
@@ -92,6 +96,53 @@ $(document).ready(() => {
     }
   });
 
+  // When update is clicked hit api routes with data.
+  updateNoteButton.on('click', () => {
+    event.preventDefault();
+
+    // Value was stored in local storage in profile.js.
+    let noteId = localStorage.getItem('noteId');
+
+    if (isValid) {
+      $.ajax({
+        url: '/api/note/update',
+        method: 'PUT',
+        data: {
+          body: noteInputUpdate.val().trim(),
+          id: noteId
+        }
+      })
+        .then(() => {
+          location.reload();
+        })
+        .catch((err) => {
+          console.log(err);
+          location.reload();
+        });
+    }
+  });
+
+  // When delete is clicked hit api route to delete data.
+  deleteNoteButton.on('click', () => {
+    event.preventDefault();
+
+    // Value was stored in local storage in profile.js
+    let noteId = localStorage.getItem('noteId');
+
+    $.ajax({
+      url: '/api/note/delete',
+      type: 'DELETE',
+      data: { id: noteId }
+    })
+      .then(() => {
+        location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        location.reload();
+      });
+  });
+
   // Function: validates user input
   const validateInput = function() {
     let length = noteInput.val().trim().length;
@@ -107,6 +158,25 @@ $(document).ready(() => {
       isValid = false;
     }
   };
+
+  // Function: validates user input for updating note body.
+  const validateUpdateInput = function() {
+    let length = noteInputUpdate.val().trim().length;
+    // Should be 1-120 characters.
+    if (length > 0 && length < 121) {
+      noteInputUpdate.removeClass('is-danger');
+      noteUpdateHelpText.addClass('is-invisible');
+      isValid = true;
+    }
+    else {
+      noteInputUpdate.addClass('is-danger');
+      noteUpdateHelpText.removeClass('is-invisible');
+      isValid = false;
+    }
+  };
+
   // Whenever user presses a key in the note's textarea, validate input length.
   noteInput.on('keyup', validateInput);
+  noteInputUpdate.on('keyup', validateUpdateInput);
+
 });

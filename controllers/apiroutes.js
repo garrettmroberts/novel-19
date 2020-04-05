@@ -1,4 +1,3 @@
-const path = require('path');
 const db = require('../models');
 const passport = require('../config/passport');
 const isAuthenticated = require('../config/middleware/isAuthenticated');
@@ -106,7 +105,33 @@ module.exports = function (app) {
       });
     });
   });
-  
+
+  // Route to update note.
+  app.put('/api/note/update', isAuthenticated, (req, res) => {
+    db.Note.update(
+      { body: req.body.body },
+      { where: { id: req.body.id }}
+    ).then((affectedRows) => {
+      res.send(affectedRows);
+    }).catch((err) => {
+      console.log(err);
+      res.end();
+    });
+  });
+
+  // Route to delete note.
+  app.delete('/api/note/delete', isAuthenticated, (req, res) => {
+    console.log('REQ.BODY.ID: ', req.body.id);
+    db.Note.destroy(
+      { where: { id: req.body.id }}
+    ).then(() => {
+      res.end();
+    }).catch((err) => {
+      console.log(err);
+      res.end();
+    });
+  });
+
   app.get('/api/notes/all', function(req, res) {
     db.Note.findAll({
       include: [

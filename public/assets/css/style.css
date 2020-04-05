@@ -4,14 +4,7 @@
 
 #logo-img {
   padding-right: 6px;
-}
-
-#profile-info-panel {
-  margin-top: 20px;
-  width: 90%;
-  margin-right: auto;
-  margin-left: auto;
-  border: 1px solid #00d1b2;
+  filter: grayscale(75%);
 }
 
 #indicator {
@@ -27,6 +20,12 @@
   padding-bottom: 20px;
   border-top: 1px solid #c0c0c0;
   border-bottom: 1px solid #c0c0c0;
+}
+
+.profile-info-panel {
+  margin: 20px auto;
+  width: 90%;
+  border: 1px solid #00d1b2;
 }
 
 .bar:hover {

@@ -1,11 +1,9 @@
 $(document).ready(() => {
-
   // On page load. GET request to retrieve user notes.
   $.get('/api/notes/user')
     .then((data) => {
       let userNotesListDiv = $('#user-notes-list');
 
-      console.log('DATA: ', data);
       if (data.Notes.length < 1) {
         let html = `
         <a class="panel-block is-block">
@@ -20,21 +18,18 @@ $(document).ready(() => {
       }
       // Display each note.
       data.Notes.forEach(note => {
-
         // Fix date syntax.
-        const createdAt = note.createdAt;
-        let day = createdAt.split('').slice(5, 7).join('');
-        let month = (createdAt.split('').slice(8, 10)).join('');
-        let year = (createdAt.split('').slice(0, 4)).join('');
-        let time = (createdAt.split('').slice(11, 16)).join('');
-        let displayTime = `${month}/${day}/${year} at ${time}`;
+        const updatedAt = note.updatedAt.split('');
+        let date = (updatedAt.slice(5, 7)).join('') + '/' + (updatedAt.slice(8, 10)).join('') + '/' + (updatedAt.slice(0, 4)).join('');
+        let time = (updatedAt.slice(11, 16)).join('');
+        let displayTime = `${date} at ${time}`;
 
         // Fix location syntax.
         let location = note.Location.addressLine.replace('undefined', '');
 
         // Note to be displayed on profile page
         let html = `
-        <a class="panel-block is-block">
+        <a class="panel-block is-block updateNotePanel">
           <div class="columns is-mobile">
             <div class="column has-text-left is-three-quarters profile-note-body">
               <p class="is-size-6 has-text-dark">${note.body}<p>
@@ -48,9 +43,19 @@ $(document).ready(() => {
               <p class="is-size-7 has-text-grey is-italic">${displayTime}</p>
             </div>
           </div>
+          <div class="is-hidden profile-note-id">${note.id}</div>
         </a>
         `;
         userNotesListDiv.after(html);
+
+        // Note panel is cicked. The user is presented with updateNote modal. Added after note
+        // list panels have loaded.
+        $('.updateNotePanel').on('click', function() {
+          // Store ID in local storage for user when user clicks to update.
+          localStorage.setItem('noteId', $(this)[0].lastElementChild.textContent);
+
+          $('#updateNoteModal').addClass('is-active');
+        });
       });
     })
     .catch((err) => {
@@ -67,4 +72,6 @@ $(document).ready(() => {
     $('#infectedModal').addClass('is-active');
     setTimeout(function() { $('#infectedModal').removeClass('is-active'); }, 2000);
   });
+
+  // NOTE: button to add note (class="addNoteModalButton" has functionality in index.js).
 });
