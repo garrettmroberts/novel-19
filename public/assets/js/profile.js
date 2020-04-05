@@ -31,7 +31,7 @@ $(document).ready(() => {
 
         // Note to be displayed on profile page
         let html = `
-        <a class="panel-block is-block">
+        <a class="panel-block is-block updateNotePanel">
           <div class="columns is-mobile">
             <div class="column has-text-left is-three-quarters profile-note-body">
               <p class="is-size-6 has-text-dark">${note.body}<p>
@@ -48,6 +48,13 @@ $(document).ready(() => {
         </a>
         `;
         userNotesListDiv.after(html);
+
+        // Note panel is cicked. The user is presented with updateNote modal. Added after note 
+        // list panels have loaded.
+        $('.updateNotePanel').on('click', function() {
+          console.log('UPDATE NOTE PANEL CLICKED');
+          $('#updateNoteModal').addClass('is-active');
+        });
       });
     })
     .catch((err) => {

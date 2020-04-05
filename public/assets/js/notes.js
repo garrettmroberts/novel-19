@@ -1,7 +1,10 @@
 $(document).ready(() => {
   const addNoteButton = $('#add-note-button');
-  const noteInput = $('#note-input');
+  const updateNoteButton = $('#update-note-button');
   const noteHelpText = $('#note-help-text');
+  const noteInput = $('#note-input');
+  const noteInputUpdate = $('#note-input-update');
+  const noteUpdateHelpText = $('#note-update-help-text');
   let isValid = false;
 
   // Initialize the places library.
@@ -92,6 +95,25 @@ $(document).ready(() => {
     }
   });
 
+  updateNoteButton.on('click', () => {
+    event.preventDefault();
+
+    console.log('INSIDE UPDATE NOTE BODY');
+    console.log('IS VALID: ', isValid);
+
+    if (isValid) {
+      $.post('/api/note/update', {
+        body: noteInput.val().trim()
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
+
   // Function: validates user input
   const validateInput = function() {
     let length = noteInput.val().trim().length;
@@ -107,6 +129,25 @@ $(document).ready(() => {
       isValid = false;
     }
   };
+
+  // Function: validates user input for updating note body.
+  const validateUpdateInput = function() {
+    let length = noteInputUpdate.val().trim().length;
+    // Should be 1-120 characters.
+    if (length > 0 && length < 121) {
+      noteInputUpdate.removeClass('is-danger');
+      noteUpdateHelpText.addClass('is-invisible');
+      isValid = true;
+    }
+    else {
+      noteInputUpdate.addClass('is-danger');
+      noteUpdateHelpText.removeClass('is-invisible');
+      isValid = false;
+    }
+  };
+
   // Whenever user presses a key in the note's textarea, validate input length.
   noteInput.on('keyup', validateInput);
+  noteInputUpdate.on('keyup', validateUpdateInput);
+
 });
