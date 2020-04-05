@@ -106,9 +106,8 @@ module.exports = function (app) {
     });
   });
 
-  // Route to update note. Checks if user is authenticated first.
+  // Route to update note.
   app.put('/api/note/update', isAuthenticated, (req, res) => {
-    console.log('REQ.BODY.BODY: ', req.body.body);
     db.Note.update(
       { body: req.body.body },
       { where: { id: req.body.id }}
@@ -116,6 +115,20 @@ module.exports = function (app) {
       res.send(affectedRows);
     }).catch((err) => {
       console.log(err);
+      res.end();
+    });
+  });
+
+  // Route to delete note.
+  app.delete('/api/note/delete', isAuthenticated, (req, res) => {
+    console.log('REQ.BODY.ID: ', req.body.id);
+    db.Note.destroy(
+      { where: { id: req.body.id }}
+    ).then(() => {
+      res.end();
+    }).catch((err) => {
+      console.log(err);
+      res.end();
     });
   });
 

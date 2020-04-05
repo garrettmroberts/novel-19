@@ -18,12 +18,10 @@ $(document).ready(() => {
       }
       // Display each note.
       data.Notes.forEach(note => {
-        console.log('NOTE: ', note);
-
         // Fix date syntax.
-        const createdAt = note.createdAt.split('');
-        let date = (createdAt.slice(8, 10)).join('') + '/' + (createdAt.slice(5, 7)).join('') + '/' + (createdAt.slice(0, 4)).join('');
-        let time = (createdAt.slice(11, 16)).join('');
+        const updatedAt = note.updatedAt.split('');
+        let date = (updatedAt.slice(5, 7)).join('') + '/' + (updatedAt.slice(8, 10)).join('') + '/' + (updatedAt.slice(0, 4)).join('');
+        let time = (updatedAt.slice(11, 16)).join('');
         let displayTime = `${date} at ${time}`;
 
         // Fix location syntax.

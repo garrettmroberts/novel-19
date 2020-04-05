@@ -5,6 +5,7 @@ $(document).ready(() => {
   const noteInput = $('#note-input');
   const noteInputUpdate = $('#note-input-update');
   const noteUpdateHelpText = $('#note-update-help-text');
+  const deleteNoteButton = $('#delete-note-button');
   let isValid = false;
 
   // Initialize the places library.
@@ -119,6 +120,27 @@ $(document).ready(() => {
           location.reload();
         });
     }
+  });
+
+  // When delete is clicked hit api route to delete data.
+  deleteNoteButton.on('click', () => {
+    event.preventDefault();
+
+    // Value was stored in local storage in profile.js
+    let noteId = localStorage.getItem('noteId');
+
+    $.ajax({
+      url: '/api/note/delete',
+      type: 'DELETE',
+      data: { id: noteId }
+    })
+      .then(() => {
+        location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+        location.reload();
+      });
   });
 
   // Function: validates user input
