@@ -34,7 +34,7 @@ $(document).ready(() => {
         <a class="panel-block is-block updateNotePanel">
           <div class="columns is-mobile">
             <div class="column has-text-left is-three-quarters profile-note-body">
-              <p class="is-size-6 has-text-dark" id="profile-note-body-text>${note.body}<p>
+              <p class="is-size-6 has-text-dark">${note.body}<p>
             </div>
             <div class="column has-text-right profile-note-location">
               <p class="is-size-6 has-text-grey-darker">${location}</p>

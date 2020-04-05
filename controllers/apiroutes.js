@@ -111,7 +111,7 @@ module.exports = function (app) {
     console.log('REQ.BODY.BODY: ', req.body.body);
     db.Note.update(
       { body: req.body.body },
-      { where: { id: req.user.id }}
+      { where: { id: req.body.id }}
     ).then((affectedRows) => {
       res.send(affectedRows);
     }).catch((err) => {

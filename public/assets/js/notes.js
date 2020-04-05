@@ -111,13 +111,12 @@ $(document).ready(() => {
           id: noteId
         }
       })
-        .then((affectedRows) => {
-          if (affectedRows.legnth > 0) {
-            location.reload();
-          }
+        .then(() => {
+          location.reload();
         })
         .catch((err) => {
           console.log(err);
+          location.reload();
         });
     }
   });
