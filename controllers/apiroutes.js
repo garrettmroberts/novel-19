@@ -1,3 +1,4 @@
+const path = require('path');
 const db = require('../models');
 const passport = require('../config/passport');
 const isAuthenticated = require('../config/middleware/isAuthenticated');
@@ -43,7 +44,13 @@ module.exports = function (app) {
       }
     })
       .then(() => {
-        res.render('profile');
+        // Render page that user made the request from.
+        if (req.headers.referer === (req.headers.origin + '/profile')) {
+          setTimeout(function() { res.render('profile'); }, 2000);
+        }
+        else {
+          setTimeout(function() { res.render('index'); }, 2000);
+        }
       })
       .catch((err) => {
         res.status(400).json(err);
