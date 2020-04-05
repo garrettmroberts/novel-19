@@ -5,7 +5,6 @@ $(document).ready(() => {
     .then((data) => {
       let userNotesListDiv = $('#user-notes-list');
 
-      console.log('DATA: ', data);
       if (data.Notes.length < 1) {
         let html = `
         <a class="panel-block is-block">
@@ -22,12 +21,10 @@ $(document).ready(() => {
       data.Notes.forEach(note => {
 
         // Fix date syntax.
-        const createdAt = note.createdAt;
-        let day = createdAt.split('').slice(5, 7).join('');
-        let month = (createdAt.split('').slice(8, 10)).join('');
-        let year = (createdAt.split('').slice(0, 4)).join('');
-        let time = (createdAt.split('').slice(11, 16)).join('');
-        let displayTime = `${month}/${day}/${year} at ${time}`;
+        const createdAt = note.createdAt.split('');
+        let date = (createdAt.slice(8, 10)).join('') + '/' + (createdAt.slice(5, 7)).join('') + '/' + (createdAt.slice(0, 4)).join('');
+        let time = (createdAt.slice(11, 16)).join('');
+        let displayTime = `${date} at ${time}`;
 
         // Fix location syntax.
         let location = note.Location.addressLine.replace('undefined', '');
