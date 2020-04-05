@@ -36,7 +36,7 @@ $(document).ready(() => {
   $('#infectedModalButton').on('click', () => {
     $.ajax({ url: '/api/status', method: 'PUT' })
       .then(() => {
-        window.location.replace('/profile');
+        window.location.replace('/home');
       });
   });
 
