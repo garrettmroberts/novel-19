@@ -43,17 +43,32 @@ $(document).ready(() => {
   }
 
   function populatePins() {
+    // Custome marker to display infected.
+    let infectedIcon = L.icon({
+      iconUrl: '/assets/images/redMarker.png',
+      iconSize:     [24, 40], // size of the icon
+      iconAnchor:   [12, 39], // point of the icon which will correspond to marker's location
+      popupAnchor:  [0, -36] // point from which the popup should open relative to the iconAnchor
+    });
+
     $.ajax({
       url:'/api/notes/all',
       type: 'GET'
     }).then(res => {
-      // Returns notes left by users with a status of '1'
-      res = res.filter(data => data.User.status === '1');
+
       res.forEach(data => {
         let note = data.body;
         let latLong = [parseFloat(data.Location.latitude), parseFloat(data.Location.longitude)];
-        let marker = L.marker(latLong).addTo(myMap);
-        marker.bindPopup(note);
+
+        // Notes left by users with a status of '1' get infected icon.
+        if (data.User.status === '1') {
+          let infectedMarker = L.marker(latLong, {icon: infectedIcon}).addTo(myMap);
+          infectedMarker.bindPopup(note);
+        }
+        else {
+          let normalMarker = L.marker(latLong).addTo(myMap);
+          normalMarker.bindPopup(note);
+        }
       });
     });
   }
