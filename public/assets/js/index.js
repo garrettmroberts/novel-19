@@ -59,15 +59,15 @@ $(document).ready(() => {
     $('#d3Modal').addClass('is-active');
   });
 
-  $('#addNoteModalButton').on('click', function() {
-    $('#addNoteModal').addClass('is-active');
-  });
-
   $('#myNotesModalButton').on('click', function() {
     $('#myNotesModal').addClass('is-active');
   });
 
   $('#myLocationsModalButton').on('click', () => $('#myLocationsModal').addClass('is-active'));
+
+  $('.addNoteModalButton').on('click', function() {
+    $('#addNoteModal').addClass('is-active');
+  });
 
   $('.deleteButton').on('click', function() {
     $('.modal').removeClass('is-active');

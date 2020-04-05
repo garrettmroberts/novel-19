@@ -64,4 +64,6 @@ $(document).ready(() => {
     $('#infectedModal').addClass('is-active');
     setTimeout(function() { $('#infectedModal').removeClass('is-active'); }, 2000);
   });
+
+  // NOTE: button to add note (class="addNoteModalButton" has functionality in index.js).
 });
