@@ -4,6 +4,20 @@ $(document).ready(() => {
   $.get('/api/notes/user')
     .then((data) => {
       let userNotesListDiv = $('#user-notes-list');
+
+      console.log('DATA: ', data);
+      if (data.Notes.length < 1) {
+        let html = `
+        <a class="panel-block is-block">
+          <div>
+            <p class="is-size-6 has-text-centered has-text-dark is-italic">You haven't added any notes yet.</p>
+          </div>
+        </a>
+        `;
+
+        userNotesListDiv.after(html);
+        return;
+      }
       // Display each note.
       data.Notes.forEach(note => {
 
@@ -38,7 +52,6 @@ $(document).ready(() => {
         `;
         userNotesListDiv.after(html);
       });
-      console.log('AFTER FOREACH: ', userNotesListDiv);
     })
     .catch((err) => {
       console.log(err);
