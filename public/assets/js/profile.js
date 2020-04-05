@@ -19,6 +19,7 @@ $(document).ready(() => {
         // Fix location syntax.
         let location = note.Location.addressLine.replace('undefined', '');
 
+        // Note to be displayed on profile page
         let html = `
         <a class="panel-block is-block">
           <div class="columns is-mobile">
@@ -43,38 +44,6 @@ $(document).ready(() => {
     .catch((err) => {
       console.log(err);
     });
-
-  // My Profile button is clicked on index page. Get request to get profile page.
-  $('#myProfileButton').on('click', () => {
-    $.get('/profile')
-      .then(() => {
-        window.location.replace('/profile');
-      })
-      .catch((err) => {
-        console.log(err);
-        window.location.replace('/home');
-      });
-  });
-
-  // Logout button is clicked. Get request to api route POST /api/logout.
-  $('.logoutButton').on('click', () => {
-    $.get('/api/logout')
-      .then(() => {
-        window.location.replace('/home');
-      })
-      .catch((err) => {
-        console.log(err);
-        window.location.replace('/home');
-      });
-  });
-
-  // Home button is clicked. Get request to html route GET /home.
-  $('.homeButton').on('click', ()=> {
-    $.get('/home')
-      .then(() => {
-        window.location.replace('/home');
-      });
-  });
 
   // Update status button is clicked. PUT request to api route PUT /api/status.
   $('.statusButton').on('click', () => {

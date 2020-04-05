@@ -19,11 +19,13 @@
           {{#if user}}
             {{!-- On home page. --}}
             {{#if user.home}}
+              {{#unless user.status}}
+              <p class="control">
+                <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
+              </p>
+              {{/unless}}
             <p class="control">
-              <button class="button is-danger" type="button" id="infectedModalButton">I've tested positive</button>
-            </p>
               <button class="button is-primary logoutButton" type="button">Logout</button>
-            <p class="control">
             </p>
             <p class="control">
               <button class="button is-primary is-outlined" type="button" id="myProfileButton" data-username="{{username}}">My Profile</button>
