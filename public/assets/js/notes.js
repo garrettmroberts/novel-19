@@ -95,18 +95,26 @@ $(document).ready(() => {
     }
   });
 
+  // When update is clicked hit api routes with data.
   updateNoteButton.on('click', () => {
     event.preventDefault();
 
-    console.log('INSIDE UPDATE NOTE BODY');
-    console.log('IS VALID: ', isValid);
+    // Value was stored in local storage in profile.js.
+    let noteId = localStorage.getItem('noteId');
 
     if (isValid) {
-      $.post('/api/note/update', {
-        body: noteInput.val().trim()
+      $.ajax({
+        url: '/api/note/update',
+        method: 'PUT',
+        data: {
+          body: noteInputUpdate.val().trim(),
+          id: noteId
+        }
       })
-        .then((res) => {
-          console.log(res);
+        .then((affectedRows) => {
+          if (affectedRows.legnth > 0) {
+            location.reload();
+          }
         })
         .catch((err) => {
           console.log(err);

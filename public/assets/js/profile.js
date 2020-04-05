@@ -1,5 +1,4 @@
 $(document).ready(() => {
-
   // On page load. GET request to retrieve user notes.
   $.get('/api/notes/user')
     .then((data) => {
@@ -19,6 +18,7 @@ $(document).ready(() => {
       }
       // Display each note.
       data.Notes.forEach(note => {
+        console.log('NOTE: ', note);
 
         // Fix date syntax.
         const createdAt = note.createdAt.split('');
@@ -34,7 +34,7 @@ $(document).ready(() => {
         <a class="panel-block is-block updateNotePanel">
           <div class="columns is-mobile">
             <div class="column has-text-left is-three-quarters profile-note-body">
-              <p class="is-size-6 has-text-dark">${note.body}<p>
+              <p class="is-size-6 has-text-dark" id="profile-note-body-text>${note.body}<p>
             </div>
             <div class="column has-text-right profile-note-location">
               <p class="is-size-6 has-text-grey-darker">${location}</p>
@@ -45,14 +45,17 @@ $(document).ready(() => {
               <p class="is-size-7 has-text-grey is-italic">${displayTime}</p>
             </div>
           </div>
+          <div class="is-hidden profile-note-id">${note.id}</div>
         </a>
         `;
         userNotesListDiv.after(html);
 
-        // Note panel is cicked. The user is presented with updateNote modal. Added after note 
+        // Note panel is cicked. The user is presented with updateNote modal. Added after note
         // list panels have loaded.
         $('.updateNotePanel').on('click', function() {
-          console.log('UPDATE NOTE PANEL CLICKED');
+          // Store ID in local storage for user when user clicks to update.
+          localStorage.setItem('noteId', $(this)[0].lastElementChild.textContent);
+
           $('#updateNoteModal').addClass('is-active');
         });
       });

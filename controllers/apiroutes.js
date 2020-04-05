@@ -1,4 +1,3 @@
-const path = require('path');
 const db = require('../models');
 const passport = require('../config/passport');
 const isAuthenticated = require('../config/middleware/isAuthenticated');
@@ -106,7 +105,20 @@ module.exports = function (app) {
       });
     });
   });
-  
+
+  // Route to update note. Checks if user is authenticated first.
+  app.put('/api/note/update', isAuthenticated, (req, res) => {
+    console.log('REQ.BODY.BODY: ', req.body.body);
+    db.Note.update(
+      { body: req.body.body },
+      { where: { id: req.user.id }}
+    ).then((affectedRows) => {
+      res.send(affectedRows);
+    }).catch((err) => {
+      console.log(err);
+    });
+  });
+
   app.get('/api/notes/all', function(req, res) {
     db.Note.findAll({
       include: [
