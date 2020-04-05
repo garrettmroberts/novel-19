@@ -4,6 +4,7 @@
 
 #logo-img {
   padding-right: 6px;
+  filter: grayscale(75%);
 }
 
 #profile-info-panel {
