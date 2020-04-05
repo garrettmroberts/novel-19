@@ -51,5 +51,8 @@ $(document).ready(() => {
       .then(() => {
         window.location.replace('/profile');
       });
+
+    $('#infectedModal').addClass('is-active');
+    setTimeout(function() { $('#infectedModal').removeClass('is-active'); }, 2000);
   });
 });

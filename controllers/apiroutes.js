@@ -46,10 +46,10 @@ module.exports = function (app) {
       .then(() => {
         // Render page that user made the request from.
         if (req.headers.referer === (req.headers.origin + '/profile')) {
-          res.render('profile');
+          setTimeout(function() { res.render('profile'); }, 2000);
         }
         else {
-          res.render('index');
+          setTimeout(function() { res.render('index'); }, 2000);
         }
       })
       .catch((err) => {

@@ -43,6 +43,8 @@ $(document).ready(() => {
 
   $('#infectedModalButton').on('click', function() {
     $('#infectedModal').addClass('is-active');
+
+    setTimeout(function() { $('#infectedModal').removeClass('is-active'); }, 2000);
   });
 
   $('#signUpModalButton').on('click', function() {
