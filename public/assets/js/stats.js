@@ -75,18 +75,13 @@ $(document).ready(function () {
       .attr('font-weight', 'bold');
   }
 
-  function getUserCountryCode() {
-    navigator.geolocation.getCurrentPosition(res => {
-      var lat = res.coords.latitude.toFixed(2);
-      var long = res.coords.longitude.toFixed(2);
-
-      $.ajax({
-        url: `http://api.geonames.org/countryCodeJSON?formatted=true&lat=${lat}&lng=${long}&username=garrettmroberts&style=full`,
-        type: 'GET'
-      }).then(res => {
-        var countryCode = res.countryCode;
-        getData(`https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=${countryCode}&timelines=1`, buildTodaysCasesTable);
-      });
+  function generateConfirmedCases() {
+    $.ajax({
+      url: 'https://ipapi.co/json/',
+      type: 'GET'
+    }).then(res => {
+      var countryCode = res.country_code;
+      getData(`https://coronavirus-tracker-api.herokuapp.com/v2/locations?country_code=${countryCode}&timelines=1`, buildTodaysCasesTable);
     });
   }
 
@@ -154,6 +149,6 @@ $(document).ready(function () {
   getData('https://coronavirus-tracker-api.herokuapp.com/v2/locations', buildConfirmedCasesTable);
 
   // Builds Table about user's location
-  getUserCountryCode();
+  generateConfirmedCases();
 
 });
