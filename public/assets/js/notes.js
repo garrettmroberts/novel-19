@@ -16,7 +16,7 @@ $(document).ready(() => {
         // Initialize the places library.
         placesAutocomplete = places({
           appId: 'pl9T9H0MC1H7',
-          apiKey: key,
+          apiKey: 'ca4802ec76ed8a2eab627fc4eae7ddbb',
           container: document.querySelector('#address-input')
         });
 
