@@ -1,0 +1,24 @@
+{{!-- Modal to add update a note. --}}
+<div class="modal" id="updateNoteModal" style="z-index:2">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title has-text-centered">Note</p>
+      <button class="delete deleteButton" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <form id="note">
+        <div class="field">
+          <div class="control">
+            <textarea class="textarea" id="note-input-update" type="text" name="note" placeholder=""></textarea>
+          </div>
+          <p class="help is-danger is-invisible" id="note-update-help-text">Notes must be 1-120 characters in length</p>
+        </div>
+        <div class="control buttons is-centered">
+          <button type="submit" class="button is-primary is-outlined" id="update-note-button">Update</button>
+          <button type="submit" class="button is-danger is-outlined" id="delete-note-button">Delete</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</div>

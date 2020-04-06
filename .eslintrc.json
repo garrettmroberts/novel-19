@@ -24,7 +24,11 @@
       "no-use-before-define": "error",
       "no-redeclare": "error",
       "camelcase": "error",
-      "brace-style": "error",
+      "brace-style": [
+          2,
+          "stroustrup",
+          { "allowSingleLine": true}
+      ],
       "indent": [
           "error",
           2
@@ -35,7 +39,7 @@
       ],
       "quotes": [
           "error",
-          "double"
+          "single"
       ],
       "semi": [
           "error",
@@ -44,5 +48,6 @@
   },
   "parserOptions": {
     "ecmaVersion": 6
-  }
+  },
+  "parser": "babel-eslint"
 }

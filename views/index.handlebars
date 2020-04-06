@@ -1,0 +1,58 @@
+{{> nav/nav}}
+
+<section class="hero is-light is-fullheight">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">Covid Activity Near You</h1>
+      <div id="mapid" style="z-index:1"></div>
+
+      <br>
+
+      <section id="additional-info">
+        <div class="container">
+          <div class="columns">
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image">
+                    <img src="/assets/images/card1.jpg" alt="Covid-19 Image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <p class="card-text has-text-centered home-card-p">We have pulled statistics for you here!</p>
+                  <a href="/stats">
+                    <button type="button" class="button is-primary is-outlined is-medium is-fullwidth">See stats</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {{!-- User is logged in --}}
+            {{#if user}}
+            <div class="column">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image">
+                    <img src="/assets/images/card2.jpeg" alt="Covid-19 Image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <p class="card-text has-text-centered home-card-p">Our collective safety depends on your input. Contribute here!</p>
+                  <button type="button" class="button is-primary is-outlined is-medium is-fullwidth addNoteModalButton">Add note</button>
+                </div>
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+{{!-- Modals --}}
+{{> modals/notes}}
+{{> modals/login}}
+{{> modals/signup}}
+{{> modals/status}}

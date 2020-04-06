@@ -2,9 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Novel-19</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.1/css/bulma.min.css" crossorigin="anonymous"/>
+   
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    {{!-- Custom stylesheet --}}
+    <link rel="stylesheet" href="/assets/css/style.css"/>
 
     {{!-- leaflet css --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -12,11 +20,33 @@
     crossorigin=""/>
 
     {{!-- leaflet js --}}
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-    crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+
+    {{!-- Index Js file --}}
+    <sript src="/assets/js/index.js"></sript>
+
+
 </head>
 <body>
-    
+    {{{ body }}}
+
+    {{!-- leaflet js --}}
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    {{!-- algolia places --}}
+    <script src="https://cdn.jsdelivr.net/npm/places.js@1.18.1"></script>
+    {{!-- D3 --}}
+    <script src="https://d3js.org/d3.v5.min.js" sameSite="none"></script>
+
+    {{!-- JS files --}}
+    <script src="/assets/js/twoWeekTimeout.js"></script>
+    <script src="/assets/js/stats.js"></script>
+    <script src="/assets/js/index.js"></script>
+    <script src="/assets/js/notes.js"></script>
+    <script src="/assets/js/signup.js"></script>
+    <script src="/assets/js/login.js"></script>
+    <script src="/assets/js/profile.js"></script>
+    <script src="/assets/js/map.js"></script>
+    <script src="/assets/js/navbar.js"></script>
+
 </body>
 </html>
