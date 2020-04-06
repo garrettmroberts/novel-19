@@ -2,8 +2,12 @@ $(document).ready(() => {
   // On page load. GET request to retrieve user notes.
   $.get('/api/notes/user')
     .then((data) => {
-      let userNotesListDiv = $('#user-notes-list');
 
+      // USER NOT SIGNED IN. DO NOTHING.
+      if (!data) { return };
+
+      // USER IS SIGNED IN
+      let userNotesListDiv = $('#user-notes-list');
       if (data.Notes.length < 1) {
         let html = `
         <a class="panel-block is-block">
