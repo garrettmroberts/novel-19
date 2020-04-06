@@ -80,7 +80,8 @@ module.exports = function (app) {
           .catch((err) => {
             console.log(err);
           });
-      } else {
+      }
+      else {
         res.redirect('/home');
       }
     });
