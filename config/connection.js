@@ -9,7 +9,7 @@ else {
     host: 'localhost',
     port: 8080,
     user: 'root',
-    password: '',
+    password: 'root',
     database: 'novel19_db'
   });
 }
