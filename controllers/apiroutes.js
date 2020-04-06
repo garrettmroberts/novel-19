@@ -157,19 +157,27 @@ module.exports = function (app) {
     db.User.findAll().then(result => res.json(result));
   });
 
-  app.get('/api/notes/user', isAuthenticated, function(req, res) {
-    db.User.findOne({
-      include: [
-        {
-          model: db.Note,
-          include: [
-            {
-              model: db.Location
-            }
-          ]
-        }
-      ],
-      where: { id: req.user.id }
-    }).then(result => res.json(result));
+  // Route to get user notes.
+  app.get('/api/notes/user', function(req, res) {
+
+    if (req.user) {
+      db.User.findOne({
+        include: [
+          {
+            model: db.Note,
+            include: [
+              {
+                model: db.Location
+              }
+            ]
+          }
+        ],
+        where: { id: req.user.id }
+      }).then(result => res.json(result));
+    }
+    // User is not signed in.
+    else {
+      res.send(false);
+    }
   });
 };
