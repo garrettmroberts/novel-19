@@ -28,8 +28,14 @@
   border: 1px solid #00d1b2;
 }
 
+@keyframes fade {
+  from {fill: red;}
+  to {fill: navy;}
+}
 .bar:hover {
-  fill: navy
+  animation-name: fade;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
 }
 
 .modal-card-head {
