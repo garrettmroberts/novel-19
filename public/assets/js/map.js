@@ -73,5 +73,9 @@ $(document).ready(() => {
     });
   }
 
-  buildMap(populatePins);
+  // ONLY BUILD MAP IF WE ARE ON INDEX PAGE
+  if ($('section').is('#indexPage')) {
+    buildMap(populatePins);
+  };
+
 });
