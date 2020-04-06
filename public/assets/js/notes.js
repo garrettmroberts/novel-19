@@ -7,32 +7,41 @@ $(document).ready(() => {
   const noteUpdateHelpText = $('#note-update-help-text');
   const deleteNoteButton = $('#delete-note-button');
   let isValid = false;
+  let placesAutocomplete;
 
-  // Initialize the places library.
-  const placesAutocomplete = places({
-    appId: 'pl9T9H0MC1H7',
-    apiKey: 'ca4802ec76ed8a2eab627fc4eae7ddbb',
-    container: document.querySelector('#address-input')
-  });
+  const getApiKey = function() {
+    // get api key
+    $.get('/api/key/algolia')
+      .then((key) => {
+        // Initialize the places library.
+        placesAutocomplete = places({
+          appId: 'pl9T9H0MC1H7',
+          apiKey: key,
+          container: document.querySelector('#address-input')
+        });
 
-  // Gets value from input field and runs autocomplete to guess what the user is trying to type.
-  const address = $('#address-value');
-  placesAutocomplete.on('change', (e) => {
-    address.textContent = e.suggestion.value;
-    // Get the data from the address typed.
-    coords = e.suggestion.latlng;
-    addressLine = e.suggestion.name + ' ' + e.suggestion.city;
-    country = e.suggestion.country;
-    state = e.suggestion.administrative;
-    zipcode = e.suggestion.postcode;
-    latitude = e.suggestion.latlng.lat;
-    longitude = e.suggestion.latlng.lng;
-  });
+        // Gets value from input field and runs autocomplete to guess what the user is trying to type.
+        const address = $('#address-value');
+        placesAutocomplete.on('change', (e) => {
+          address.textContent = e.suggestion.value;
+          // Get the data from the address typed.
+          coords = e.suggestion.latlng;
+          addressLine = e.suggestion.name + ' ' + e.suggestion.city;
+          country = e.suggestion.country;
+          state = e.suggestion.administrative;
+          zipcode = e.suggestion.postcode;
+          latitude = e.suggestion.latlng.lat;
+          longitude = e.suggestion.latlng.lng;
+        });
+      
+        // Clears autocomplete.
+        placesAutocomplete.on('clear', () => {
+          address.textContent = 'none';
+        });
+    });
+  }
+  getApiKey();
 
-  // Clears autocomplete.
-  placesAutocomplete.on('clear', () => {
-    address.textContent = 'none';
-  });
 
   // addLocation does a post to our "api/addlocation" route
   addLocation = (data) => {

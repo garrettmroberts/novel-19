@@ -180,4 +180,10 @@ module.exports = function (app) {
       res.send(false);
     }
   });
+
+  // Route to get Algolia api key
+  app.get('/api/key/algolia', (req, res) => {
+    res.send(process.env.ALGOLIA_API_KEY);
+  });
+  
 };
