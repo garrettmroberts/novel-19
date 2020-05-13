@@ -1,5 +1,7 @@
 # Novel-19
 
+![Commits](https://img.shields.io/github/last-commit/garrettmroberts/novel-19) 
+
 ## Summary
 
 Novel-19 is designed to assist users in being aware of their surroundings and flattening the curve of the novel coronavirus strain.  Users can log notes with geocoordinates concerning locations they have visited, where they have seen hard-to-find-food items, and anything else that may be useful to the general public.  When a user tests positive, they can update their status on the app and the map will show the placs they have visited within the past two weeks in red.  Then other users can cross-check these red pins with lcoations they have visited within the past two weeks to determine whether or not they feel it necessary to also take a two-week quarantine.
@@ -10,17 +12,7 @@ This app can be accessed [here](https://novel-19.herokuapp.com/).  Simply naviga
 
 ## Technologies Used
 
-- Express
-
-- Handlebars
-
-- D3
-
-- Leaflet
-
-- Passport
-
-- Sequelize
+![HTML](https://img.shields.io/badge/language-HTML-orange)&ensp;![CSS](https://img.shields.io/badge/language-CSS-blue)&ensp;![JavaScript](https://img.shields.io/badge/language-JavaScript-blueviolet)&ensp;![Node.js](https://img.shields.io/badge/language-Node.js-yellow)&ensp;![React.js](https://img.shields.io/badge/language-React.js-yellow)&ensp;![Express.js](https://img.shields.io/badge/tech-Express-green)&ensp;![D3](https://img.shields.io/badge/tech-D3-green)&ensp;![Leaflet](https://img.shields.io/badge/tech-Leaflet-orange)&ensp;![Passport](https://img.shields.io/badge/tech-Passport-yellow)&ensp;![Sequelize](https://img.shields.io/badge/tech-Sequelize-blueviolet)
 
 ## Screenshot
 
