@@ -1,6 +1,6 @@
 # Novel-19
 
-![Commits](https://img.shields.io/github/last-commit/garrettmroberts/novel-19) 
+![Commits](https://img.shields.io/github/last-commit/garrettmroberts/novel-19)&ensp;![Contributors](https://img.shields.io/github/contributors/garrettmroberts/novel-19)
 
 ## Summary
 
